@@ -59,7 +59,7 @@ function heartbeat() {
 }
 
 function registerApp() {
-    $appName = $_GET['appName'],
+    $appName = $_GET['appName'];
     if(!$appName) {
         reportError('appName parameter is not optional.');
         return;
