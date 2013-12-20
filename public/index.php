@@ -24,6 +24,8 @@ EpiDatabase::employ(
     getenv('FRIDAY-LAB-20131220-MYSQL-USER'),
     getenv('FRIDAY-LAB-20131220-MYSQL-PASSWORD'));
 
+setupDatabase();
+
 //  Heartbeat API doesn't receive any parameters.
 getRoute()->get('/', 'heartbeat');
 //  Register API receives the name of the app to be registered.
@@ -152,6 +154,22 @@ function logout() {
 
 function unregisterApp() {
     reportSuccess();
+}
+
+function setupDatabase() {
+    $createStatements = array('
+CREATE TABLE apps(
+    id varchar(100),
+    appName varchar(100),
+    secret varchar(100)
+)
+'
+);
+
+    //  Execute all the create statements.
+    for ($i=0; $i < count($createStatements); $i++) {
+        getDatabase()->execute($createStatements[$i]);
+    }
 }
 
 ?>
