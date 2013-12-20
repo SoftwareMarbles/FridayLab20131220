@@ -26,6 +26,14 @@ $tableLogins = array();
 $tableMessages = array();
 $tableStatistics = array();
 
+//  Constants used in the entire module.
+$APP_NAME_PARAM = 'appName';
+$UNIQUE_ID_PREFIX = 'friday-lab-20131220';
+$STATUS_RETURN_PARAM = 'status';
+$TABLE_APPS_ID_COLUMN = 'id';
+$TABLE_APPS_NAME_COLUMN = 'name';
+$TABLE_APPS_SECRET_COLUMN = 'secret';
+
 //  Copied from http://www.php.net/parse_url
 function convertUrlQuery($query) {
     $queryParts = explode('&', $query);
@@ -39,36 +47,65 @@ function convertUrlQuery($query) {
     return $params;
 }
 
-function reportError($error) {
+function reportFailure($error) {
     echo json_encode(array(
-        'status' => 'fail',
+        $STATUS_RETURN_PARAM => 'fail',
         'error' => $error));
+}
+
+function reportSuccess(array $result = NULL) {
+    //  Make the result array if it wasn't passed.
+    if(!$result) {
+        $result = array();
+    }
+
+    //  Always add the status success to the result array.
+    $result[$STATUS_RETURN_PARAM] = 'success';
+
+    echo json_encode($result);
 }
 
 //  The functions implementing API.
 function heartbeat() {
     $now = new DateTime();
 
-    //  Return the live status with the current server time.
+    //  Return the format and the current server time.
     $data = array(
         'format' => 'json',
-        'status' => 'live',
         'time' => $now->format('Y-m-d H:i:s.mmm'));
 
-    echo json_encode($data);
+    reportSuccess($data);
 }
 
 function registerApp() {
-    $appName = $_GET['appName'];
+    $appName = $_GET[$APP_NAME_PARAM];
     if(!$appName) {
-        reportError('appName parameter is not optional.');
+        reportError('{$APP_NAME_PARAM} parameter is not optional.');
         return;
     }
 
+    //  If the app is already register just return its data.
+    $appData = $tableApps[$appName];
+    if($appData) {
+        reportSuccess($appData);
+        return;
+    }
+
+    //  Generate unique app ID and its secret.
+    $appId = uniqid($UNIQUE_ID_PREFIX, true);
+    $secret = uniqid($UNIQUE_ID_PREFIX, true);
+
+    //  Store the app data.
+    $tableApps[$appName] = array(
+        $TABLE_APPS_ID_COLUMN => $appId,
+        $TABLE_APPS_NAME_COLUMN => $appName,
+        $TABLE_APPS_SECRET_COLUMN => $secret);
+
+    //  Return the app data to the caller.
     $data = array(
-        'appName' => $appName,
-        'appId' => 'appId',
-        'secret' => 'secret');
+        $TABLE_APPS_ID_COLUMN => $appId,
+        $TABLE_APPS_NAME_COLUMN => $appName,
+        $TABLE_APPS_SECRET_COLUMN => $secret);
     echo json_encode($data);
 }
 
@@ -104,15 +141,11 @@ function getStatistics() {
 }
 
 function logout() {
-    $data = array(
-        'status' => 'OK');
-    echo json_encode($data);
+    reportSuccess;
 }
 
 function unregisterApp() {
-    $data = array(
-        'status' => 'OK');
-    echo json_encode($data);
+    reportSuccess;
 }
 
 ?>
