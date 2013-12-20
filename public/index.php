@@ -1,8 +1,10 @@
 <?php
 
 //  Setup API routes using Epiphany.
-include 'Epi.php';
 ini_set("include_path", ".:../:../epiphany/src/");
+
+include 'Epi.php';
+
 Epi::init('route');
 //  Heartbeat API doesn't receive any parameters.
 getRoute()->get('/', 'heartbeat');
