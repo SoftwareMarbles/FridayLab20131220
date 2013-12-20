@@ -30,4 +30,10 @@ Reading up on PHP I'm starting to remember that I did read about it at some poin
 So I want to create a basic web service (and not a web server) with PHP and of course I google that (btw, I also use [DuckDuckGo](https://duckduckgo.com) search engine especially when I don't want Google changing my results based on my temporary location and stuff like that). So the first thing that comes up is [Create a Basic Web Service Using PHP, MySQL, XML and JSON](http://davidwalsh.name/web-service-php-mysql-xml-json) by David Walsh. Not sure why I need XML but sounds like a match so I'll give it a try.
 
 09:21
-After couple of hours of detours I'm *finally* ready to restart this again. So first things first - I need a PHP "hello world".
+After couple of hours of detours I'm *finally* ready to restart this again. I have looked into some different articles and of course I really don't want to build my own RESTful framework for PHP so after searching on Stack Overflow and googling a bit, I found [PHP REST API Frameworks](http://davss.com/tech/php-rest-api-frameworks/) article which as the first entry indicates a framework called Epiphany as "fast, easy, clean and RESTful". Good enough for me - I just want something up and running fast. To be on the safe side I scanned the rest of the article and there seem to be a lot of good frameworks out there but after looking at its example on GitHub I'll start with Epiphany.
+
+09:35
+Epiphany framework needs Apache so what's a practical developer to do? Setup Apache...
+
+10:01
+More detours and other things to do but I'm back setting up API routes through Epiphany's [example](https://github.com/jmathai/epiphany/blob/master/docs/Route.markdown).
