@@ -39,7 +39,7 @@ function convertUrlQuery($query) {
     return $params;
 }
 
-function void reportError($error) {
+function reportError($error) {
     echo json_encode(array(
         'status' => 'fail',
         'error' => $error));
