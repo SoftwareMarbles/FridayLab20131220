@@ -37,3 +37,7 @@ Epiphany framework needs Apache so what's a practical developer to do? Setup Apa
 
 10:01
 More detours and other things to do but I'm back setting up API routes through Epiphany's [example](https://github.com/jmathai/epiphany/blob/master/docs/Route.markdown).
+
+10:40
+But of course I had more work to do before I could even start pushing stuff through git to the test server. That's now all setup through [gitolite](https://github.com/sitaramc/gitolite/).
+
