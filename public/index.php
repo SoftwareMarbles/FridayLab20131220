@@ -5,6 +5,8 @@ ini_set("include_path", ".:../:../epiphany/src/");
 
 include 'Epi.php';
 
+Epi::setSetting('exceptions', true);
+
 Epi::init('route');
 //  Heartbeat API doesn't receive any parameters.
 getRoute()->get('/', 'heartbeat');
@@ -37,6 +39,12 @@ function convertUrlQuery($query) {
     return $params;
 }
 
+function void reportError($error) {
+    echo json_encode(array(
+        'status' => 'fail',
+        'error' => $error));
+}
+
 //  The functions implementing API.
 function heartbeat() {
     $now = new DateTime();
@@ -51,11 +59,14 @@ function heartbeat() {
 }
 
 function registerApp() {
-    echo $_SERVER['QUERY_STRING'] . '\n\r';
-    echo $_GET['appName'];
+    $appName = $_GET['appName'],
+    if(!$appName) {
+        reportError('appName parameter is not optional.');
+        return;
+    }
 
     $data = array(
-        'appName' => $_GET['appName'],
+        'appName' => $appName,
         'appId' => 'appId',
         'secret' => 'secret');
     echo json_encode($data);
