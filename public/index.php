@@ -2,7 +2,7 @@
 
 echo 'Hellllllloooooo';
 
-include 'epiphany/src/Epi.php';
+include '../epiphany/src/Epi.php';
 
 Epi::init('route');
 getRoute()->get('/', 'home');
