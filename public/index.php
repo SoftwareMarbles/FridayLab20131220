@@ -28,7 +28,7 @@ EpiDatabase::employ(
     'mysql',
     'localhost',
     getenv('FRIDAY-LAB-20131220-MYSQL-USER'),
-    getenv('FRIDAY-LAB-20131220-MYSQL-PASSWORD'))
+    getenv('FRIDAY-LAB-20131220-MYSQL-PASSWORD'));
 
 //  Heartbeat API doesn't receive any parameters.
 getRoute()->get('/', 'heartbeat');
