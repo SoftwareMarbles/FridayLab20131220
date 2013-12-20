@@ -6,7 +6,7 @@ ini_set("include_path", ".:../:../epiphany/src/");
 
 include 'Epi.php';
 
-Epi::setPath(realpath(dirname(__FILE__)));
+Epi::setPath('base', realpath(dirname(__FILE__)));
 
 Epi::init('route');
 getRoute()->get('/', 'home');
