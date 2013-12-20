@@ -1,12 +1,12 @@
 <?php
 
-echo 'Hellllllloooooo';
-
 ini_set("include_path", ".:../:../epiphany/src/");
+
+echo 'Hellllooooaaaa\n';
 
 include 'Epi.php';
 
-Epi::setPath('base', realpath(dirname(__FILE__)));
+Epi::setPath('base', realpath(dirname(__FILE__)) . "/..");
 
 Epi::init('route');
 getRoute()->get('/', 'home');
