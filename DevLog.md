@@ -65,5 +65,14 @@ Okay, one (more) papercut in the life of papercuts... On to the Epiphany example
 17:26
 After the lunch and christmass shopping I'm back for more paperecuts. Main Epiphany module is loading but it cannot load its submodules due to some issues with include paths. I tried setting those up with `ini_set("include_path"...` but to no avail. So I resorted to hacking the Epi.php source file to define the base directory (from which other submodules are included) during its own initialization. Unfortunatelly, at one point I decided that Epiphany was going to be a git submodule and since now I changed its source code I can't push it to my test server as Git wants to push my code to my server and Epi's code to its server (which is GitHub)
 
-18:00
-I solved the submodule issues by switching to `git subtree`.
+18:05
+I solved the submodule issues by switching to `git subtree` and then hacked a little bit more and *finally* my Epiphany example is working.
+
+18:26
+But the example was working only so-so - it seems that I've somehow screwed up Apache configuration but I can't figure out how. It tail spins into a recursive loop on redirects.
+
+18:40
+But of course... I screwed up .htaccess file which I did create at one point but then it got lost in all the Git stuff and moving files around and so on and I didn't notice it as it was of course hidden from `ls -l` (note to self: always `ls -la`).
+
+So I have an example of a PHP web service working - so now I'm going to hack my API.
+
