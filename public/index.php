@@ -90,6 +90,7 @@ function registerApp() {
     //  If the app is already register just return its data.
     $appData = $tableApps[$appName];
     if($appData) {
+        $appData['requestId'] = uniqid(UNIQUE_ID_PREFIX, true);
         reportSuccess($appData);
         return;
     }
@@ -109,28 +110,27 @@ function registerApp() {
         TABLE_APPS_ID_COLUMN => $appId,
         TABLE_APPS_NAME_COLUMN => $appName,
         TABLE_APPS_SECRET_COLUMN => $secret);
-    echo json_encode($data);
+    reportSuccess($data);
 }
 
 function login() {
     $data = array(
         'token' => 'token',
         'expiresAt' => 'expiresAt');
-    echo json_encode($data);
+    reportSuccess($data);
 }
 
 function send() {
     $data = array(
-        'messageId' => 'messageId',
-        'status' => 'OK');
-    echo json_encode($data);
+        'messageId' => 'messageId');
+    reportSuccess($data);
 }
 
 function getStatus() {
     $data = array(
         'messageId' => 'messageId',
-        'status' => 'status');
-    echo json_encode($data);
+        'messageStatus' => 'status');
+    reportSuccess($data);
 }
 
 function getStatistics() {
@@ -140,15 +140,15 @@ function getStatistics() {
         'getStatusCount' => 'getStatus',
         'getStatisticsCount' => 'getStatisticsCount',
         'totalCount' => 'totalCount');
-    echo json_encode($data);
+    reportSuccess($data);
 }
 
 function logout() {
-    reportSuccess;
+    reportSuccess();
 }
 
 function unregisterApp() {
-    reportSuccess;
+    reportSuccess();
 }
 
 ?>
