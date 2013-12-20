@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Epi::init('route');
 getRoute()->get('/', 'home');
 getRoute()->get('/contact', 'contactUs');
@@ -22,3 +23,14 @@ function contactUs() {
         Allow from All
     </Directory>
 </VirtualHost>
+=======
+#!/usr/bin/php
+<?php
+$data = array(
+    'format' => 'json',
+    'status' => 'live'
+    );
+echo json_encode($data);
+?>
+
+>>>>>>> d69b9e5129f440ed7c33abdba0f317ec91488452
