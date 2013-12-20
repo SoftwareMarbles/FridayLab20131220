@@ -21,8 +21,8 @@ EpiDatabase::employ(
     'mysql',
     'fridayLab20131220',
     'localhost',
-    getenv('FRIDAY-LAB-20131220-MYSQL-USER'),
-    getenv('FRIDAY-LAB-20131220-MYSQL-PASSWORD'));
+    getenv('FRIDAY_LAB_20131220_MYSQL_USER'),
+    getenv('FRIDAY_LAB_20131220_MYSQL_PASSWORD'));
 
 setupDatabase();
 
