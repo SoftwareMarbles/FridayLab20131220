@@ -27,7 +27,7 @@ $tableMessages = array();
 $tableStatistics = array();
 
 //  Constants used in the entire module.
-$APP_NAME_PARAM = 'appName';
+define('APP_NAME_PARAM', 'appName');
 $UNIQUE_ID_PREFIX = 'friday-lab-20131220';
 $STATUS_RETURN_PARAM = 'status';
 $TABLE_APPS_ID_COLUMN = 'id';
@@ -78,9 +78,9 @@ function heartbeat() {
 }
 
 function registerApp() {
-    $appName = $_GET[$APP_NAME_PARAM];
+    $appName = $_GET[APP_NAME_PARAM];
     if(!$appName) {
-        reportFailure(sprintf('%s parameter is not optional.', $APP_NAME_PARAM));
+        reportFailure(sprintf('%s parameter is not optional.', APP_NAME_PARAM));
         return;
     }
 
