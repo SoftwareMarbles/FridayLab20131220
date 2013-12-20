@@ -157,7 +157,10 @@ function unregisterApp() {
 }
 
 function setupDatabase() {
-    $createStatements = array('
+    $createStatements = array(
+'CREATE DATABASE fridayLab20131220'
+,
+        '
 CREATE TABLE apps(
     id varchar(100),
     appName varchar(100),
