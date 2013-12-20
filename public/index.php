@@ -1,13 +1,27 @@
 <?php
 
-//  Setup API routes using Epiphany.
+//  The in-memory storage of our data until the database backend is implemented.
+$tableApps = array();
+$tableLogins = array();
+$tableMessages = array();
+$tableStatistics = array();
+
+//  Constants used in the entire module.
+define('APP_NAME_PARAM', 'appName');
+define('UNIQUE_ID_PREFIX', 'friday-lab-20131220');
+define('STATUS_RETURN_PARAM', 'status');
+define('TABLE_APPS_ID_COLUMN', 'id');
+define('TABLE_APPS_NAME_COLUMN', 'name');
+define('TABLE_APPS_SECRET_COLUMN', 'secret');
+
+//  Now that all the data and constants have been defined/declared, setup API routes using Epiphany.
 ini_set("include_path", ".:../:../epiphany/src/");
 
 include 'Epi.php';
 
 Epi::setSetting('exceptions', true);
-
 Epi::init('route');
+
 //  Heartbeat API doesn't receive any parameters.
 getRoute()->get('/', 'heartbeat');
 //  Register API receives the name of the app to be registered.
@@ -18,21 +32,6 @@ getRoute()->get('/getStatus', 'getStatus');
 getRoute()->get('/getStatistics', 'getStatistics');
 getRoute()->post('/logout', 'logout');
 getRoute()->post('/unregisterApp', 'unregisterApp');
-
-//  The in-memory storage of our data until the database backend is implemented.
-$tableApps = array();
-$tableLogins = array();
-$tableMessages = array();
-$tableStatistics = array();
-
-//  Constants used in the entire module.
-define('APP_NAME_PARAM', 'appName');
-$UNIQUE_ID_PREFIX = 'friday-lab-20131220';
-$STATUS_RETURN_PARAM = 'status';
-$TABLE_APPS_ID_COLUMN = 'id';
-$TABLE_APPS_NAME_COLUMN = 'name';
-$TABLE_APPS_SECRET_COLUMN = 'secret';
-
 getRoute()->run();
 
 //  Copied from http://www.php.net/parse_url
@@ -50,7 +49,7 @@ function convertUrlQuery($query) {
 
 function reportFailure($error) {
     echo json_encode(array(
-        $STATUS_RETURN_PARAM => 'fail',
+        STATUS_RETURN_PARAM => 'fail',
         'error' => $error));
 }
 
@@ -61,7 +60,7 @@ function reportSuccess(array $result = NULL) {
     }
 
     //  Always add the status success to the result array.
-    $result[$STATUS_RETURN_PARAM] = 'success';
+    $result[STATUS_RETURN_PARAM] = 'success';
 
     echo json_encode($result);
 }
@@ -96,20 +95,20 @@ function registerApp() {
     }
 
     //  Generate unique app ID and its secret.
-    $appId = uniqid($UNIQUE_ID_PREFIX, true);
-    $secret = uniqid($UNIQUE_ID_PREFIX, true);
+    $appId = uniqid(UNIQUE_ID_PREFIX, true);
+    $secret = uniqid(UNIQUE_ID_PREFIX, true);
 
     //  Store the app data.
     $tableApps[$appName] = array(
-        $TABLE_APPS_ID_COLUMN => $appId,
-        $TABLE_APPS_NAME_COLUMN => $appName,
-        $TABLE_APPS_SECRET_COLUMN => $secret);
+        TABLE_APPS_ID_COLUMN => $appId,
+        TABLE_APPS_NAME_COLUMN => $appName,
+        TABLE_APPS_SECRET_COLUMN => $secret);
 
     //  Return the app data to the caller.
     $data = array(
-        $TABLE_APPS_ID_COLUMN => $appId,
-        $TABLE_APPS_NAME_COLUMN => $appName,
-        $TABLE_APPS_SECRET_COLUMN => $secret);
+        TABLE_APPS_ID_COLUMN => $appId,
+        TABLE_APPS_NAME_COLUMN => $appName,
+        TABLE_APPS_SECRET_COLUMN => $secret);
     echo json_encode($data);
 }
 
