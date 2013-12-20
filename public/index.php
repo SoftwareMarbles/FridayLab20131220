@@ -18,7 +18,6 @@ getRoute()->get('/getStatus', 'getStatus');
 getRoute()->get('/getStatistics', 'getStatistics');
 getRoute()->post('/logout', 'logout');
 getRoute()->post('/unregisterApp', 'unregisterApp');
-getRoute()->run();
 
 //  The in-memory storage of our data until the database backend is implemented.
 $tableApps = array();
@@ -33,6 +32,8 @@ $STATUS_RETURN_PARAM = 'status';
 $TABLE_APPS_ID_COLUMN = 'id';
 $TABLE_APPS_NAME_COLUMN = 'name';
 $TABLE_APPS_SECRET_COLUMN = 'secret';
+
+getRoute()->run();
 
 //  Copied from http://www.php.net/parse_url
 function convertUrlQuery($query) {
@@ -78,6 +79,9 @@ function heartbeat() {
 }
 
 function registerApp() {
+
+	echo APP_NAME_PARAM;
+
     $appName = $_GET[APP_NAME_PARAM];
     if(!$appName) {
         reportFailure(sprintf('%s parameter is not optional.', APP_NAME_PARAM));
