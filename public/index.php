@@ -1,5 +1,7 @@
 <?php
 
+include 'epiphany/src/Epi.php';
+
 Epi::init('route');
 getRoute()->get('/', 'home');
 getRoute()->get('/contact', 'contactUs');
