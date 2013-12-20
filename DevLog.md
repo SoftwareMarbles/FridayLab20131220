@@ -82,3 +82,6 @@ In one of my earlier posts I described a technique I use during project developm
 19:16
 For simplicity's sake I will be extracting all API parameters from URL's query parameters.
 
+20:27
+"registerApp" API is working (and I've built some reusable common code) but I was mixing up the PHP's memory model, which is essentially tied to a requestm, and very different from Node.js memory model which I've been working with lately. I caught it early on - it just sprang to my mind so it's no big deal. I just need to start persisting the data on MySQL (famous last words) but there is an example for that in Epiphany's documentation.
+

@@ -8,6 +8,7 @@ $tableStatistics = array();
 
 //  Constants used in the entire module.
 define('APP_NAME_PARAM', 'appName');
+
 define('UNIQUE_ID_PREFIX', 'friday-lab-20131220');
 define('STATUS_RETURN_PARAM', 'status');
 define('TABLE_APPS_ID_COLUMN', 'id');
@@ -20,7 +21,14 @@ ini_set("include_path", ".:../:../epiphany/src/");
 include 'Epi.php';
 
 Epi::setSetting('exceptions', true);
-Epi::init('route');
+Epi::init('route', 'database');
+
+EpiDatabase::employ(
+    'mysql',
+    'mysql',
+    'localhost',
+    getenv('FRIDAY-LAB-20131220-MYSQL-USER'),
+    getenv('FRIDAY-LAB-20131220-MYSQL-PASSWORD'))
 
 //  Heartbeat API doesn't receive any parameters.
 getRoute()->get('/', 'heartbeat');
@@ -78,9 +86,6 @@ function heartbeat() {
 }
 
 function registerApp() {
-
-	echo APP_NAME_PARAM;
-
     $appName = $_GET[APP_NAME_PARAM];
     if(!$appName) {
         reportFailure(sprintf('%s parameter is not optional.', APP_NAME_PARAM));
@@ -134,13 +139,17 @@ function getStatus() {
 }
 
 function getStatistics() {
-    $data = array(
-        'loginCount' => 'loginCount',
-        'sendCount' => 'sendCount',
-        'getStatusCount' => 'getStatus',
-        'getStatisticsCount' => 'getStatisticsCount',
-        'totalCount' => 'totalCount');
-    reportSuccess($data);
+    $appName = $_GET[APP_NAME_PARAM];
+    if(!$appName) {
+        reportFailure(sprintf('%s parameter is not optional.', APP_NAME_PARAM));
+        return;
+    }
+
+    $stats = getDatabase()->one(
+        'SELECT COUNT(*) AS messageCount FROM messages WHERE appId = (SELECT id FROM apps WHERE appName = :appName)',
+        array(':appName', $appName));
+
+    reportSuccess($stats);
 }
 
 function logout() {
