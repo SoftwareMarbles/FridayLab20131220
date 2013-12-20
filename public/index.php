@@ -2,7 +2,6 @@
 
 echo 'Hellllllloooooo';
 
-$
 ini_set("include_path", ".:../:../epiphany/src/");
 
 include 'Epi.php';
