@@ -1,30 +1,59 @@
 <?php
 
-ini_set("include_path", ".:../:../epiphany/src/");
-
+//  Setup API routes using Epiphany.
 include 'Epi.php';
-
+ini_set("include_path", ".:../:../epiphany/src/");
 Epi::init('route');
+//  Heartbeat API doesn't receive any parameters.
 getRoute()->get('/', 'heartbeat');
-getRoute()->get('/registerApp', 'registerApp');
-getRoute()->get('/login', 'login');
-getRoute()->get('/send', 'send');
+//  Register API receives the name of the app to be registered.
+getRoute()->post('/registerApp', 'registerApp');
+getRoute()->post('/login', 'login');
+getRoute()->post('/send', 'send');
 getRoute()->get('/getStatus', 'getStatus');
 getRoute()->get('/getStatistics', 'getStatistics');
-getRoute()->get('/logout', 'logout');
-getRoute()->get('/unregisterApp', 'unregisterApp');
+getRoute()->post('/logout', 'logout');
+getRoute()->post('/unregisterApp', 'unregisterApp');
 getRoute()->run();
 
+//  The in-memory storage of our data until the database backend is implemented.
+$tableApps = array();
+$tableLogins = array();
+$tableMessages = array();
+$tableStatistics = array();
+
+//  Copied from http://www.php.net/parse_url
+function convertUrlQuery($query) {
+    $queryParts = explode('&', $query);
+
+    $params = array();
+    foreach ($queryParts as $param) {
+        $item = explode('=', $param);
+        $params[$item[0]] = $item[1];
+    }
+
+    return $params;
+}
+
+//  The functions implementing API.
 function heartbeat() {
+    $now = new DateTime();
+
+    //  Return the live status with the current server time.
     $data = array(
         'format' => 'json',
-        'status' => 'live'
-        );
+        'status' => 'live',
+        'time' => $now->format('Y-m-d H:i:s.mmm'));
+
     echo json_encode($data);
 }
 
 function registerApp() {
+    echo $_SERVER['QUERY_STRING'] . '\n\r';
+    echo $_GET['appName'];
+
     $data = array(
+        'appName' => $_GET['appName'],
         'appId' => 'appId',
         'secret' => 'secret');
     echo json_encode($data);

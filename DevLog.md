@@ -76,3 +76,9 @@ But of course... I screwed up .htaccess file which I did create at one point but
 
 So I have an example of a PHP web service working - so now I'm going to hack my API.
 
+19:07
+In one of my earlier posts I described a technique I use during project development and I compared it to drilling. I just drilled the tiniest of holes - there is an API that returns hard-coded data but data nonetheless. What I'm going to do next is implement the entire service with data being kept in memory. Once that is done - I'll persist the needed states into the database.
+
+19:16
+For simplicity's sake I will be extracting all API parameters from URL's query parameters.
+
