@@ -32,7 +32,8 @@ function registerApp() {
 
 function login() {
     $data = array(
-        'token' => 'token');
+        'token' => 'token',
+        'expiresAt' => 'expiresAt');
     echo json_encode($data);
 }
 
