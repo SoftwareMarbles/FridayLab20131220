@@ -1,3 +1,5 @@
+<?php
+
 Epi::init('route');
 getRoute()->get('/', 'home');
 getRoute()->get('/contact', 'contactUs');
@@ -10,3 +12,5 @@ function home() {
 function contactUs() {
     echo 'Send us an email at <a href="mailto:ivan@softwaremarbles.com">ivan@softwaremarbles.com</a>';
 }
+
+?>
