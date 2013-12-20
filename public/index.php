@@ -1,5 +1,7 @@
 <?php
 
+echo 'Hellllllloooooo';
+
 include 'epiphany/src/Epi.php';
 
 Epi::init('route');
