@@ -1,11 +1,5 @@
 <?php
 
-//  The in-memory storage of our data until the database backend is implemented.
-$tableApps = array();
-$tableLogins = array();
-$tableMessages = array();
-$tableStatistics = array();
-
 //  Constants used in the entire module.
 define('APP_NAME_PARAM', 'appName');
 
@@ -25,7 +19,7 @@ Epi::init('route', 'database');
 
 EpiDatabase::employ(
     'mysql',
-    'mysql',
+    'fridayLab20131220',
     'localhost',
     getenv('FRIDAY-LAB-20131220-MYSQL-USER'),
     getenv('FRIDAY-LAB-20131220-MYSQL-PASSWORD'));
