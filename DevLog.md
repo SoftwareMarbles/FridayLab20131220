@@ -41,3 +41,24 @@ More detours and other things to do but I'm back setting up API routes through E
 10:40
 But of course I had more work to do before I could even start pushing stuff through git to the test server. That's now all setup through [gitolite](https://github.com/sitaramc/gitolite/).
 
+12:19
+Back from the depths of silly conventions! I found a nice little [web services tutorial](http://www.lornajane.net/resource/web-services-tutorial-2) but I originally found it on another site that didn't have source code and the tutorial states this as an example of a service:
+
+    $data = array(
+    'format' => 'json',
+    'status' => 'live'
+    );
+    echo json_encode($data);
+
+Does this work? No, it doesn't - Apache just spits it out as a plain text. So I tried restarting Apache, re-installing mod for php5, re-enabling it and so on. None of it worked. Then I tried running it directly from command line:
+
+    php -f index.php
+
+That didn't work either - just got spit out as plain text (at least that's consistent). So I tried running the same code on REPL and that (Turing be blessed) worked. It also worked with `php -r` switch.
+
+Then I figured to try to running it as a bash script by specifying the interpreter `#!/usr/bin/php` on the first line. That didn't work either but at least it told me that the access was denied! But fixing that didn't work either - code would just be echoed.
+
+So I finally added `<?php` to index.ph and lo and behold - the script ran and spat out JSON as it should have been the case all along... and then I re-checked on Apache and now at last it was working as well (outputting that `#!/usr/bin/php` as text before the JSON but that's fine).
+
+Okay, one (more) papercut in the life of papercuts... On to the Epiphany example.
+
