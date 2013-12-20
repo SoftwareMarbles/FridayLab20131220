@@ -32,7 +32,7 @@ class Epi
   public static function init()
   {
     //  Setup the base directory first.
-    if(!isPathSet('base')) {
+    if(!self::isPathSet('base')) {
       self::setPath('base', realpath(dirname(__FILE__)));
     }
 

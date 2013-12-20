@@ -64,3 +64,6 @@ Okay, one (more) papercut in the life of papercuts... On to the Epiphany example
 
 17:26
 After the lunch and christmass shopping I'm back for more paperecuts. Main Epiphany module is loading but it cannot load its submodules due to some issues with include paths. I tried setting those up with `ini_set("include_path"...` but to no avail. So I resorted to hacking the Epi.php source file to define the base directory (from which other submodules are included) during its own initialization. Unfortunatelly, at one point I decided that Epiphany was going to be a git submodule and since now I changed its source code I can't push it to my test server as Git wants to push my code to my server and Epi's code to its server (which is GitHub)
+
+18:00
+I solved the submodule issues by switching to `git subtree`.
