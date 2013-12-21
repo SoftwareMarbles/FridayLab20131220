@@ -160,11 +160,18 @@ function setupDatabase() {
     $createStatements = array(
 'CREATE DATABASE fridayLab20131220'
 ,
-        '
+'
 CREATE TABLE apps(
     id varchar(100),
     appName varchar(100),
     secret varchar(100)
+)
+',
+'
+CREATE TABLE messages(
+    id varchar(100),
+    appId varchar(100),
+    status varchar(10)
 )
 '
 );
