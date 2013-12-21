@@ -161,14 +161,16 @@ function setupDatabase() {
 'CREATE DATABASE IF NOT EXISTS fridayLab20131220;'
 ,
 '
-CREATE TABLE IF NOT EXISTS fridayLab20131220.apps(
+CREATE TABLE IF NOT EXISTS fridayLab20131220.apps (
     id varchar(100),
-    appName varchar(100),
+    name varchar(100),
     secret varchar(100)
 );
 ',
 '
-CREATE TABLE IF NOT EXISTS fridayLab20131220.messages(
+DROP TABLE IF EXISTS fridayLab20131220.messages;
+
+CREATE TABLE IF NOT EXISTS fridayLab20131220.messages (
     id varchar(100),
     appId varchar(100),
     status varchar(10)
