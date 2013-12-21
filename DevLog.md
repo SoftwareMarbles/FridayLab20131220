@@ -85,3 +85,6 @@ For simplicity's sake I will be extracting all API parameters from URL's query p
 20:27
 "registerApp" API is working (and I've built some reusable common code) but I was mixing up the PHP's memory model, which is essentially tied to a requestm, and very different from Node.js memory model which I've been working with lately. I caught it early on - it just sprang to my mind so it's no big deal. I just need to start persisting the data on MySQL (famous last words) but there is an example for that in Epiphany's documentation.
 
+21:18
+MySQL syntax error reporting is awful. It took me a while to find that "IF NOT EXIST" (which is how I would spell it in SQL Server) is actually "IF NOT EXISTS" in MySQL.
+

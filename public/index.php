@@ -158,24 +158,24 @@ function unregisterApp() {
 
 function setupDatabase() {
     $createStatements = array(
-'CREATE DATABASE IF NOT EXIST fridayLab20131220'
+'CREATE DATABASE IF NOT EXISTS fridayLab20131220;'
 ,
 '
-CREATE TABLE IF NOT EXIST apps(
+CREATE TABLE IF NOT EXISTS apps(
     id varchar(100),
     appName varchar(100),
     secret varchar(100)
-)
+);
 ',
 '
-CREATE TABLE IF NOT EXIST messages(
+CREATE TABLE IF NOT EXISTS messages(
     id varchar(100),
     appId varchar(100),
     status varchar(10)
-)
+);
 ',
 //  Our last statement is USE so that we switch the connection context to our db.
-'USE fridayLab20131220'
+'USE fridayLab20131220;'
 );
 
     //  Execute all the create statements.
