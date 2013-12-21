@@ -102,9 +102,9 @@ function registerApp() {
 
     //  Store the app data.
     getDatabase()->execute('INSERT INTO apps(id, name, secret) VALUES(:id, :name, :secret)', array(
-        TABLE_APPS_ID_COLUMN => $appId,
-        TABLE_APPS_NAME_COLUMN => $appName,
-        TABLE_APPS_NAME_COLUMN => $secret));
+        ':id' => $appId,
+        ':name' => $appName,
+        ':secret' => $secret));
 
     //  Return the app data to the caller.
     $data = array(
