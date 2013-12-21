@@ -21,7 +21,7 @@ EpiDatabase::employ(
     'mysql',
     'mysql',
     'localhost',
-    'root'),
+    'root',
     'moot'));
 
 setupDatabase();
