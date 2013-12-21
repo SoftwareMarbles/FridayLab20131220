@@ -19,10 +19,10 @@ Epi::init('route', 'database');
 
 EpiDatabase::employ(
     'mysql',
-    'fridayLab20131220',
+    'mysql',
     'localhost',
-    getenv('FRIDAY_LAB_20131220_MYSQL_USER'),
-    getenv('FRIDAY_LAB_20131220_MYSQL_PASSWORD'));
+    'root'),
+    'moot'));
 
 setupDatabase();
 
