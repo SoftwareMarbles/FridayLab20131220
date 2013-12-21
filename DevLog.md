@@ -88,3 +88,5 @@ For simplicity's sake I will be extracting all API parameters from URL's query p
 21:18
 MySQL syntax error reporting is awful. It took me a while to find that "IF NOT EXIST" (which is how I would spell it in SQL Server) is actually "IF NOT EXISTS" in MySQL.
 
+21:23
+The database access is finally working - now it's time for the big drill.

@@ -101,10 +101,10 @@ function registerApp() {
     $secret = uniqid(UNIQUE_ID_PREFIX, true);
 
     //  Store the app data.
-    $tableApps[$appName] = array(
+    getDatabase()->execute('INSERT INTO apps(id, name, secret) VALUES(:id, :name, :secret)', array(
         TABLE_APPS_ID_COLUMN => $appId,
         TABLE_APPS_NAME_COLUMN => $appName,
-        TABLE_APPS_SECRET_COLUMN => $secret);
+        TABLE_APPS_NAME_COLUMN => $secret));
 
     //  Return the app data to the caller.
     $data = array(
