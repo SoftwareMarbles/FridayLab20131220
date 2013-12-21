@@ -173,7 +173,7 @@ CREATE TABLE IF NOT EXIST messages(
     appId varchar(100),
     status varchar(10)
 )
-'
+',
 //  Our last statement is USE so that we switch the connection context to our db.
 'USE fridayLab20131220'
 );
