@@ -143,7 +143,7 @@ function getStatistics() {
 
     $stats = getDatabase()->one(
         'SELECT COUNT(*) AS messageCount FROM messages WHERE appId = (SELECT id FROM apps WHERE appName = :appName)',
-        array(':appName', $appName));
+        array(':appName' => $appName));
 
     reportSuccess($stats);
 }
@@ -158,7 +158,7 @@ function unregisterApp() {
 
 function setupDatabase() {
     $createStatements = array(
-'CREATE DATABASE IF NOT EXISTS fridayLab20131220;'
+'CREATE DATABASE IF NOT EXIST fridayLab20131220;'
 ,
 '
 CREATE TABLE IF NOT EXISTS apps(
