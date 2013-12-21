@@ -158,7 +158,7 @@ function unregisterApp() {
 
 function setupDatabase() {
     $createStatements = array(
-'CREATE DATABASE IF NOT EXIST fridayLab20131220;'
+'CREATE DATABASE IF NOT EXISTS fridayLab20131220;'
 ,
 '
 CREATE TABLE IF NOT EXISTS apps(
