@@ -91,6 +91,14 @@ function getTokenParam() {
     return getParam(LOGIN_TOKEN_PARAM);
 }
 
+function tokenIsValid($token) {
+    $loginData = Database::queryLoginsPerToken($token);
+
+    //  A token is valid if it exist in the database and it hasn't expired just yet (its expiresAt is less than the current time)
+    return $loginData
+        && $loginData['expiresAt'] < new DateTime()) {
+}
+
 function registerApp() {
     $appName =getAppNameParam();
     if(!$appName) {
@@ -161,6 +169,16 @@ function login() {
 }
 
 function send() {
+    $token = getTokenParam();
+    if($token) {
+        return;
+    }
+
+    if(!tokenIsValid($token)) {
+        reportFailure('Token has expired.');
+        return;
+    }
+
     $data = array(
         'messageId' => 'messageId');
     reportSuccess($data);
