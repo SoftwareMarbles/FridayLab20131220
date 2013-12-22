@@ -31,6 +31,13 @@ CREATE TABLE IF NOT EXISTS fridayLab20131220.messages (
     status varchar(10)
 );
 ',
+'
+CREATE TABLE IF NOT EXISTS fridayLab20131220.logins (
+    token varchar(100),
+    appId varchar(100),
+    expiresAt datetime
+)
+',
 //  Our last statement is USE so that we switch the connection context to our db.
 'USE fridayLab20131220;'
     );
@@ -43,6 +50,10 @@ CREATE TABLE IF NOT EXISTS fridayLab20131220.messages (
 
     public static function queryAppsPerName($appName) {
         return getDatabase()->one('SELECT * FROM apps WHERE name = :appName', array(':appName' => $appName));
+    }
+
+    public static function queryAppsPerId($appId) {
+        return getDatabase()->one('SELECT * FROM apps WHERE id = :appId', array(':appId' => $appId));
     }
 
     public static function addApp($appName, $appId, $appSecret) {
@@ -60,6 +71,28 @@ CREATE TABLE IF NOT EXISTS fridayLab20131220.messages (
         return getDatabase()->one(
             'SELECT COUNT(*) AS messageCount FROM messages WHERE appId = (SELECT id FROM apps WHERE appName = :appName)',
             array(':appName' => $appName));
+    }
+
+    public static function addLogin($token, $appId, $expiresAt) {
+        //  Store the login data.
+        getDatabase()->execute('INSERT INTO logins(token, appId, expiresAt) VALUES(:token, :appId, :expiresAt)', array(
+            ':token' => $appId,
+            ':appId' => $appName,
+            ':expiresAt' => $appSecret));
+
+        //  As the result we return the row we just added from the database itself.
+        return Database::queryLoginsPerToken($token);
+    }
+
+    public static function queryTokensPerAppId($appId) {
+        return getDatabase()->one(
+            'SELECT * FROM logins WHERE token = :token',
+            array(':token' => $token));
+    }
+
+    public static function deleteLogin($token) {
+        getDatabase()->execute('DELETE FROM logins WHERE token = :token',
+            array(':token' => $token));
     }
 }
 

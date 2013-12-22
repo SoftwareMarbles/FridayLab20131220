@@ -8,8 +8,10 @@ include 'Database.php';
 
 //  Constants used in the entire module.
 define('APP_NAME_PARAM', 'appName');
+define('APP_ID_PARAM', 'appId');
+define('APP_SECRET_PARAM', 'appSecret');
+define('LOGIN_TOKEN_PARAM', 'token');
 
-define('UNIQUE_ID_PREFIX', 'friday-lab-20131220');
 define('STATUS_RETURN_PARAM', 'status');
 
 Epi::setSetting('exceptions', true);
@@ -59,10 +61,39 @@ function heartbeat() {
     reportSuccess($data);
 }
 
+//  Returns the given parameter's value or reports failure if the parameter is not available and not optional.
+function getParam($param, $optional = FALSE) {
+    $param = $_GET[$param];
+    if($param) {
+        return $param;
+    }
+
+    if(!$optional) {
+        reportFailure(sprintf('%s parameter is not optional.', $param));
+    }
+
+    return NULL;
+}
+
+function getAppNameParam() {
+    return getParam(APP_NAME_PARAM);
+}
+
+function getAppIdParam() {
+    return getParam(APP_ID_PARAM);
+}
+
+function getAppSecretParam() {
+    return getParam(APP_SECRET_PARAM);
+}
+
+function getTokenParam() {
+    return getParam(LOGIN_TOKEN_PARAM);
+}
+
 function registerApp() {
-    $appName = $_GET[APP_NAME_PARAM];
+    $appName =getAppNameParam();
     if(!$appName) {
-        reportFailure(sprintf('%s parameter is not optional.', APP_NAME_PARAM));
         return;
     }
 
@@ -74,20 +105,59 @@ function registerApp() {
     }
 
     //  Generate unique app ID and its secret.
-    $appId = uniqid(UNIQUE_ID_PREFIX, true);
-    $secret = uniqid(UNIQUE_ID_PREFIX, true);
+    $appId = uniqid('id', true);
+    $secret = uniqid('secret', true);
 
     //  Add the new app to the database and return its data.
     $data = Database::addApp($appName, $appId, $secret);
+    if(!data) {
+        reportFailure('Couldn''t add app data.');
+        return;
+    }
 
     reportSuccess($data);
 }
 
 function login() {
-    $data = array(
-        'token' => 'token',
-        'expiresAt' => 'expiresAt');
-    reportSuccess($data);
+    //  We need both app's ID and secret to correctly login.
+    $appId = getAppIdParam();
+    if(!$appId) {
+        return;
+    }
+    $appSecret = getAppSecretParam();
+    if(!$appSecret) {
+        return;
+    }
+
+    //  We need to check that the app has been registered and that its
+    //  secret and the given secret match.
+    $appData = Database::queryAppsPerId($appId);
+    if(!appId) {
+        reportFailure('Incorrect app ID.');
+        return;
+    }
+    if($appData.secret != appSecret) {
+        //  We report the bad secret error openly. There are other API calls where a possible attacker
+        //  could check the validity of the app ID in his or her posession so it makes no sense to obfuscate
+        //  the message here.
+        reportFailure('Incorrect app secret.');
+        return;
+    }
+
+    //  Generate unique token.
+    $token = uniqid('token', true);
+    //  Tokens for now all expire in a day.
+    $expiresAt = new DateTime();
+    $expiresAt->add(new DateInterval('1 day'));
+
+    //  Add the token to the database and return its data.
+    $loginData = Database::addLogin($token, $appId, $expiresAt);
+    if(!loginData) {
+        reportFailure('Couldn''t add login data.');
+        return;
+    }
+
+    reportSuccess($loginData);
 }
 
 function send() {
@@ -104,9 +174,8 @@ function getStatus() {
 }
 
 function getStatistics() {
-    $appName = $_GET[APP_NAME_PARAM];
+    $appName = getAppNameParam();
     if(!$appName) {
-        reportFailure(sprintf('%s parameter is not optional.', APP_NAME_PARAM));
         return;
     }
 
@@ -116,6 +185,14 @@ function getStatistics() {
 }
 
 function logout() {
+    $token = getTokenParam();
+    if(!$token) {
+        return;
+    }
+
+    //  This cannot logically fail as we don't care if the client tries to delete an inexisting login.
+    Database::deleteLogin($token);
+
     reportSuccess();
 }
 
