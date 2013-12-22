@@ -101,7 +101,7 @@ CREATE TABLE IF NOT EXISTS fridayLab20131220.logins (
     public static function addLogin($token, $appId, $expiresAt, $state)
     {
         //  Store the login data.
-        getDatabase()->execute('INSERT INTO logins(token, appId, expiresAt, state) VALUES(:token, :appId, :expiresAt)', array(
+        getDatabase()->execute('INSERT INTO logins(token, appId, expiresAt, state) VALUES(:token, :appId, :expiresAt, :state)', array(
             ':token' => $token,
             ':appId' => $appId,
             ':expiresAt' => $expiresAt->format('Y-m-d H:i:s.u'),
