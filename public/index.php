@@ -98,7 +98,7 @@ function tokenIsValid($token) {
     //  and its state is loggedIn.
     return $loginData
         && $loginData['expiresAt'] < new DateTime()
-        && $loginData['state'] == Database::LoginState::LoggedIn;
+        && $loginData['state'] == DatabaseLoginState::LoggedIn;
 }
 
 function registerApp() {
@@ -161,7 +161,7 @@ function login() {
     $expiresAt->add(DateInterval::createFromDateString('1 day'));
 
     //  Add the token to the database and return its data.
-    $loginData = Database::addLogin($token, $appId, $expiresAt, Database::LoginState::LoggedIn);
+    $loginData = Database::addLogin($token, $appId, $expiresAt, DatabaseLoginState::LoggedIn);
     if(!loginData) {
         reportFailure('Couldn\'t add login data.');
         return;
@@ -229,7 +229,7 @@ function logout() {
     }
 
     //  This cannot logically fail as we don't care if the client tries to log out an inexisting login.
-    Database::updateLoginState($token, Database::LoginState::LoggedOut);
+    Database::updateLoginState($token, DatabaseLoginState::LoggedOut);
 
     reportSuccess();
 }

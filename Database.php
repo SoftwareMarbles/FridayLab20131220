@@ -4,24 +4,24 @@ define('TABLE_APPS_ID_COLUMN', 'id');
 define('TABLE_APPS_NAME_COLUMN', 'name');
 define('TABLE_APPS_SECRET_COLUMN', 'secret');
 
+public class DatabaseMessageState extends SplEnum
+{
+    const __default = self::Waiting;
+
+    const Waiting = 0;
+    const Sent = 1;
+}
+
+public class DatabaseLoginState extends SplEnum
+{
+    const __default = self::LoggedIn;
+
+    const LoggedIn = 0;
+    const LoggedOut = 1;
+}
+
 class Database
 {
-    public class MessageState extends SplEnum
-    {
-        const __default = self::Waiting;
-
-        const Waiting = 0;
-        const Sent = 1;
-    }
-
-    public class LoginState extends SplEnum
-    {
-        const __default = self::LoggedIn;
-
-        const LoggedIn = 0;
-        const LoggedOut = 1;
-    }
-
     public static function setupDatabase()
     {
         EpiDatabase::employ(
