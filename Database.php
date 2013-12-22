@@ -42,8 +42,6 @@ CREATE TABLE IF NOT EXISTS fridayLab20131220.apps (
 );
 ',
 '
-DROP TABLE IF EXISTS fridayLab20131220.messages;
-
 CREATE TABLE IF NOT EXISTS fridayLab20131220.messages (
     id varchar(100),
     token varchar(100),
@@ -51,8 +49,6 @@ CREATE TABLE IF NOT EXISTS fridayLab20131220.messages (
 );
 ',
 '
-DROP TABLE IF EXISTS fridayLab20131220.logins;
-
 CREATE TABLE IF NOT EXISTS fridayLab20131220.logins (
     token varchar(100),
     appId varchar(100),
