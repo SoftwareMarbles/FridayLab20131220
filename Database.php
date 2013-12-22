@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS fridayLab20131220.logins (
         return Database::queryLoginsPerToken($token);
     }
 
-    public static function queryLoginsPerToken($appId) {
+    public static function queryLoginsPerToken($token) {
         return getDatabase()->one(
             'SELECT * FROM logins WHERE token = :token',
             array(':token' => $token));
