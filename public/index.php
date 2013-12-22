@@ -171,37 +171,43 @@ function login() {
 }
 
 function send() {
-    $token = getTokenParam();
-    if(!$token) {
-        return;
-    }
+    try
+    {
+        $token = getTokenParam();
+        if(!$token) {
+            return;
+        }
 
-    if(!tokenIsValid($token)) {
-        reportFailure('Token has expired.');
-        return;
-    }
+        if(!tokenIsValid($token)) {
+            reportFailure('Token has expired.');
+            return;
+        }
 
-    //  Get the JSON payload from the request wrapper (see http://php.net/manual/en/wrappers.php.php)
-    $rawPayload = file_get_contents('php://input');
-    if(!$rawPayload) {
-        reportFailure('Payload is missing.');
-        return;
-    }
-    $payload = json_decode($rawPayload);
-    if(!$payload) {
-        reportFailure('Payload is not correctly formed JSON.');
-        return;
-    }
-    if(!isset($payload['type'])
-        || !isset($payload['recepient'])
-        || !isset($payload['message'])) {
-        reportFailure('Payload lacks non-optional properties.');
-        return;
-    }
+        //  Get the JSON payload from the request wrapper (see http://php.net/manual/en/wrappers.php.php)
+        $rawPayload = file_get_contents('php://input');
+        if(!$rawPayload) {
+            reportFailure('Payload is missing.');
+            return;
+        }
+        $payload = json_decode($rawPayload);
+        if(!$payload) {
+            reportFailure('Payload is not correctly formed JSON.');
+            return;
+        }
+        if(!isset($payload['type'])
+            || !isset($payload['recepient'])
+            || !isset($payload['message'])) {
+            reportFailure('Payload lacks non-optional properties.');
+            return;
+        }
 
-    $data = array(
-        'messageId' => 'messageId');
-    reportSuccess($data);
+        $data = array(
+            'messageId' => 'messageId');
+        reportSuccess($data);
+    }
+    catch(Exception $e) {
+        reportFailure($e->getMessage());
+    }
 }
 
 function getStatus() {
