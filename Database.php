@@ -125,7 +125,7 @@ CREATE TABLE IF NOT EXISTS fridayLab20131220.logins (
     public static function updateLoginState($token, $state)
     {
         getDatabase()->execute('UPDATE login SET state = :state WHERE token = :token',
-            array(':token' => $token, ':state' = $state));
+            array(':token' => $token, ':state' => $state));
     }
 }
 
