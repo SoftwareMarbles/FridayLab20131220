@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS fridayLab20131220.apps (
 );
 ',
 '
-CREATE TABLE IF EXISTS fridayLab20131220.messages;
+DROP TABLE IF EXISTS fridayLab20131220.messages;
 
 CREATE TABLE IF NOT EXISTS fridayLab20131220.messages (
     id varchar(100),
