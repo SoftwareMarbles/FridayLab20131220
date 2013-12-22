@@ -76,15 +76,15 @@ CREATE TABLE IF NOT EXISTS fridayLab20131220.logins (
     public static function addLogin($token, $appId, $expiresAt) {
         //  Store the login data.
         getDatabase()->execute('INSERT INTO logins(token, appId, expiresAt) VALUES(:token, :appId, :expiresAt)', array(
-            ':token' => $appId,
-            ':appId' => $appName,
-            ':expiresAt' => $appSecret));
+            ':token' => $token,
+            ':appId' => $appId,
+            ':expiresAt' => $expiresAt));
 
         //  As the result we return the row we just added from the database itself.
         return Database::queryLoginsPerToken($token);
     }
 
-    public static function queryTokensPerAppId($appId) {
+    public static function queryLoginsPerToken($appId) {
         return getDatabase()->one(
             'SELECT * FROM logins WHERE token = :token',
             array(':token' => $token));
