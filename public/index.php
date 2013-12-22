@@ -111,7 +111,7 @@ function registerApp() {
     //  Add the new app to the database and return its data.
     $data = Database::addApp($appName, $appId, $secret);
     if(!data) {
-        reportFailure('Couldn''t add app data.');
+        reportFailure('Couldn\'t add app data.');
         return;
     }
 
@@ -153,7 +153,7 @@ function login() {
     //  Add the token to the database and return its data.
     $loginData = Database::addLogin($token, $appId, $expiresAt);
     if(!loginData) {
-        reportFailure('Couldn''t add login data.');
+        reportFailure('Couldn\'t add login data.');
         return;
     }
 
