@@ -132,11 +132,11 @@ function login() {
     //  We need to check that the app has been registered and that its
     //  secret and the given secret match.
     $appData = Database::queryAppsPerId($appId);
-    if(!appId) {
+    if(!$appData) {
         reportFailure('Incorrect app ID.');
         return;
     }
-    if($appData.secret != appSecret) {
+    if($appData.secret != $appSecret) {
         //  We report the bad secret error openly. There are other API calls where a possible attacker
         //  could check the validity of the app ID in his or her posession so it makes no sense to obfuscate
         //  the message here.

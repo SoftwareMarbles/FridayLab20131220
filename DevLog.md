@@ -113,3 +113,5 @@ As I mentioned the other day, today I'm going to try to wrap up my PHP + MySQL p
 The insertions and querying of apps table are now working. All the database code has been abstracted into a separate Database class - nothing sophisticated, just a bunch of static functions being invoked from the main module. But it will allow easy replacement if needed be.
 
 Now I'm wondering how do I do unit tests in PHP. I'll definitelly add a black box test which will delete all the data (not so black box but it's a setup) and then test the entire API.
+
+### 08:35
