@@ -63,9 +63,9 @@ function heartbeat() {
 
 //  Returns the given parameter's value or reports failure if the parameter is not available and not optional.
 function getParam($param, $optional = FALSE) {
-    $param = $_GET[$param];
-    if($param) {
-        return $param;
+    $value = $_GET[$param];
+    if($value) {
+        return $value;
     }
 
     if(!$optional) {
