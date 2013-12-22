@@ -56,7 +56,7 @@ function heartbeat() {
     //  Return the format and the current server time.
     $data = array(
         'format' => 'json',
-        'time' => $now->format('Y-m-d H:i:s.mmm'));
+        'time' => $now->format('Y-m-d H:i:s.u'));
 
     reportSuccess($data);
 }

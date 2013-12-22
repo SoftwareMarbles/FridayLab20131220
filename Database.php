@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS fridayLab20131220.logins (
         getDatabase()->execute('INSERT INTO logins(token, appId, expiresAt) VALUES(:token, :appId, :expiresAt)', array(
             ':token' => $token,
             ':appId' => $appId,
-            ':expiresAt' => $expiresAt));
+            ':expiresAt' => $expiresAt->format('Y-m-d H:i:s.u')));
 
         //  As the result we return the row we just added from the database itself.
         return Database::queryLoginsPerToken($token);
