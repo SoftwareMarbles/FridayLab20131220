@@ -96,7 +96,7 @@ function tokenIsValid($token) {
 
     //  A token is valid if it exist in the database and it hasn't expired just yet (its expiresAt is less than the current time)
     return $loginData
-        && $loginData['expiresAt'] < new DateTime()) {
+        && $loginData['expiresAt'] < new DateTime();
 }
 
 function registerApp() {
