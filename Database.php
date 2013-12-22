@@ -1,7 +1,5 @@
 <?php
 
-include 'Epi.php';
-
 define('TABLE_APPS_ID_COLUMN', 'id');
 define('TABLE_APPS_NAME_COLUMN', 'name');
 define('TABLE_APPS_SECRET_COLUMN', 'secret');
