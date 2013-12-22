@@ -25,10 +25,12 @@ CREATE TABLE IF NOT EXISTS fridayLab20131220.apps (
 );
 ',
 '
+DROP TABLE IF EXISTS fridayLab20131220.messages;
+
 CREATE TABLE IF NOT EXISTS fridayLab20131220.messages (
     id varchar(100),
-    appId varchar(100),
-    status varchar(10)
+    token varchar(100),
+    status int
 );
 ',
 '

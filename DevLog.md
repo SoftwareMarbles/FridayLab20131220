@@ -114,4 +114,8 @@ The insertions and querying of apps table are now working. All the database code
 
 Now I'm wondering how do I do unit tests in PHP. I'll definitelly add a black box test which will delete all the data (not so black box but it's a setup) and then test the entire API.
 
-### 08:35
+### 09:06
+After some minor detours, the logins are working and so is token validation. Next on is the message sending - at least the API part.
+
+I find PHP documentation (as found on php.net) to be truly great: its complete, clean, easily digestible and community feedback is much ritcher than say on MSDN.
+
