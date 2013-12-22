@@ -4,7 +4,7 @@ define('TABLE_APPS_ID_COLUMN', 'id');
 define('TABLE_APPS_NAME_COLUMN', 'name');
 define('TABLE_APPS_SECRET_COLUMN', 'secret');
 
-public class DatabaseMessageState extends SplEnum
+class DatabaseMessageState extends SplEnum
 {
     const __default = self::Waiting;
 
@@ -12,7 +12,7 @@ public class DatabaseMessageState extends SplEnum
     const Sent = 1;
 }
 
-public class DatabaseLoginState extends SplEnum
+class DatabaseLoginState extends SplEnum
 {
     const __default = self::LoggedIn;
 
