@@ -94,9 +94,11 @@ function getTokenParam() {
 function tokenIsValid($token) {
     $loginData = Database::queryLoginsPerToken($token);
 
-    //  A token is valid if it exist in the database and it hasn't expired just yet (its expiresAt is less than the current time)
+    //  A token is valid if it exist in the database, it hasn't expired just yet (its expiresAt is less than the current time)
+    //  and its state is loggedIn.
     return $loginData
-        && $loginData['expiresAt'] < new DateTime();
+        && $loginData['expiresAt'] < new DateTime()
+        && $loginData['state'] == Database::LoginState::loggedIn;
 }
 
 function registerApp() {
@@ -179,6 +181,24 @@ function send() {
         return;
     }
 
+    //  Get the JSON payload from the request wrapper (see http://php.net/manual/en/wrappers.php.php)
+    $rawPayload = file_get_contents('php://input');
+    if(!$rawPayload) {
+        reportFailure('Payload is missing.');
+        return;
+    }
+    $payload = json_decode($rawPayload);
+    if(!$payload) {
+        reportFailure('Payload is not correctly formed JSON.');
+        return;
+    }
+    if(!isset($payload['type'])
+        || !isset($payload['recepient'])
+        || !isset($payload['message'])) {
+        reportFailure('Payload lacks non-optional properties.');
+        return;
+    }
+
     $data = array(
         'messageId' => 'messageId');
     reportSuccess($data);
@@ -208,8 +228,8 @@ function logout() {
         return;
     }
 
-    //  This cannot logically fail as we don't care if the client tries to delete an inexisting login.
-    Database::deleteLogin($token);
+    //  This cannot logically fail as we don't care if the client tries to log out an inexisting login.
+    Database::updateLoginsState($token, Database::LoginState::loggedOut);
 
     reportSuccess();
 }

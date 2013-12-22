@@ -6,7 +6,19 @@ define('TABLE_APPS_SECRET_COLUMN', 'secret');
 
 class Database
 {
-    public static function setupDatabase() {
+    abstract class MessageState
+    {
+        const sent = 1;
+    }
+
+    abstract class LoginState
+    {
+        const loggedIn = 0;
+        const loggedOut = 1;
+    }
+
+    public static function setupDatabase()
+    {
         EpiDatabase::employ(
             'mysql',
             'mysql',
@@ -25,8 +37,6 @@ CREATE TABLE IF NOT EXISTS fridayLab20131220.apps (
 );
 ',
 '
-DROP TABLE IF EXISTS fridayLab20131220.messages;
-
 CREATE TABLE IF NOT EXISTS fridayLab20131220.messages (
     id varchar(100),
     token varchar(100),
@@ -34,10 +44,13 @@ CREATE TABLE IF NOT EXISTS fridayLab20131220.messages (
 );
 ',
 '
+DROP TABLE IF EXISTS fridayLab20131220.logins;
+
 CREATE TABLE IF NOT EXISTS fridayLab20131220.logins (
     token varchar(100),
     appId varchar(100),
-    expiresAt datetime
+    expiresAt datetime,
+    status int
 )
 ',
 //  Our last statement is USE so that we switch the connection context to our db.
@@ -45,20 +58,25 @@ CREATE TABLE IF NOT EXISTS fridayLab20131220.logins (
     );
 
         //  Execute all the create statements.
-        for ($i=0; $i < count($createStatements); $i++) {
+        for ($i=0; $i < count($createStatements); $i++)
+        {
             getDatabase()->execute($createStatements[$i]);
         }
     }
 
-    public static function queryAppsPerName($appName) {
+    //  Functions related to apps table.
+    public static function queryAppsPerName($appName)
+    {
         return getDatabase()->one('SELECT * FROM apps WHERE name = :appName', array(':appName' => $appName));
     }
 
-    public static function queryAppsPerId($appId) {
+    public static function queryAppsPerId($appId)
+    {
         return getDatabase()->one('SELECT * FROM apps WHERE id = :appId', array(':appId' => $appId));
     }
 
-    public static function addApp($appName, $appId, $appSecret) {
+    public static function addApp($appName, $appId, $appSecret)
+    {
         //  Store the app data.
         getDatabase()->execute('INSERT INTO apps(id, name, secret) VALUES(:id, :name, :secret)', array(
             ':id' => $appId,
@@ -69,13 +87,16 @@ CREATE TABLE IF NOT EXISTS fridayLab20131220.logins (
         return Database::queryAppsPerName($appName);
     }
 
-    public static function queryStatsPerAppName($appName) {
+    public static function queryStatsPerAppName($appName)
+    {
         return getDatabase()->one(
             'SELECT COUNT(*) AS messageCount FROM messages WHERE appId = (SELECT id FROM apps WHERE appName = :appName)',
             array(':appName' => $appName));
     }
 
-    public static function addLogin($token, $appId, $expiresAt) {
+    //  Functions related to logins table.
+    public static function addLogin($token, $appId, $expiresAt)
+    {
         //  Store the login data.
         getDatabase()->execute('INSERT INTO logins(token, appId, expiresAt) VALUES(:token, :appId, :expiresAt)', array(
             ':token' => $token,
@@ -86,15 +107,17 @@ CREATE TABLE IF NOT EXISTS fridayLab20131220.logins (
         return Database::queryLoginsPerToken($token);
     }
 
-    public static function queryLoginsPerToken($token) {
+    public static function queryLoginsPerToken($token)
+    {
         return getDatabase()->one(
             'SELECT * FROM logins WHERE token = :token',
             array(':token' => $token));
     }
 
-    public static function deleteLogin($token) {
-        getDatabase()->execute('DELETE FROM logins WHERE token = :token',
-            array(':token' => $token));
+    public static function updateLoginsState($token, $state)
+    {
+        getDatabase()->execute('UPDATE login SET state = :state WHERE token = :token',
+            array(':token' => $token, ':state' = $state));
     }
 }
 
