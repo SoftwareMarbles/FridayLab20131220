@@ -6,15 +6,20 @@ define('TABLE_APPS_SECRET_COLUMN', 'secret');
 
 class Database
 {
-    abstract class MessageState
+    public class MessageState extends SplEnum
     {
-        const sent = 1;
+        const __default = self::Waiting;
+
+        const Waiting = 0;
+        const Sent = 1;
     }
 
-    abstract class LoginState
+    public class LoginState extends SplEnum
     {
-        const loggedIn = 0;
-        const loggedOut = 1;
+        const __default = self::LoggedIn;
+
+        const LoggedIn = 0;
+        const LoggedOut = 1;
     }
 
     public static function setupDatabase()
@@ -37,10 +42,12 @@ CREATE TABLE IF NOT EXISTS fridayLab20131220.apps (
 );
 ',
 '
+CREATE TABLE IF EXISTS fridayLab20131220.messages;
+
 CREATE TABLE IF NOT EXISTS fridayLab20131220.messages (
     id varchar(100),
     token varchar(100),
-    status int
+    state int
 );
 ',
 '
@@ -50,7 +57,7 @@ CREATE TABLE IF NOT EXISTS fridayLab20131220.logins (
     token varchar(100),
     appId varchar(100),
     expiresAt datetime,
-    status int
+    state int
 )
 ',
 //  Our last statement is USE so that we switch the connection context to our db.
@@ -95,13 +102,14 @@ CREATE TABLE IF NOT EXISTS fridayLab20131220.logins (
     }
 
     //  Functions related to logins table.
-    public static function addLogin($token, $appId, $expiresAt)
+    public static function addLogin($token, $appId, $expiresAt, $state)
     {
         //  Store the login data.
-        getDatabase()->execute('INSERT INTO logins(token, appId, expiresAt) VALUES(:token, :appId, :expiresAt)', array(
+        getDatabase()->execute('INSERT INTO logins(token, appId, expiresAt, state) VALUES(:token, :appId, :expiresAt)', array(
             ':token' => $token,
             ':appId' => $appId,
-            ':expiresAt' => $expiresAt->format('Y-m-d H:i:s.u')));
+            ':expiresAt' => $expiresAt->format('Y-m-d H:i:s.u'),
+            ':state' => $state);
 
         //  As the result we return the row we just added from the database itself.
         return Database::queryLoginsPerToken($token);
@@ -114,7 +122,7 @@ CREATE TABLE IF NOT EXISTS fridayLab20131220.logins (
             array(':token' => $token));
     }
 
-    public static function updateLoginsState($token, $state)
+    public static function updateLoginState($token, $state)
     {
         getDatabase()->execute('UPDATE login SET state = :state WHERE token = :token',
             array(':token' => $token, ':state' = $state));
