@@ -136,7 +136,7 @@ function login() {
         reportFailure('Incorrect app ID.');
         return;
     }
-    if($appData.secret != $appSecret) {
+    if($appData['secret'] != $appSecret) {
         //  We report the bad secret error openly. There are other API calls where a possible attacker
         //  could check the validity of the app ID in his or her posession so it makes no sense to obfuscate
         //  the message here.
