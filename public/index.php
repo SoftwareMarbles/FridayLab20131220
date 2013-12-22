@@ -4,7 +4,7 @@
 ini_set("include_path", ".:../:../epiphany/src/");
 
 include 'Epi.php';
-include 'Database.php'
+include 'Database.php';
 
 //  Constants used in the entire module.
 define('APP_NAME_PARAM', 'appName');
