@@ -18,8 +18,6 @@ class Database
 'CREATE DATABASE IF NOT EXISTS fridayLab20131220;'
 ,
 '
-DROP TABLE IF EXISTS fridayLab20131220.apps;
-
 CREATE TABLE IF NOT EXISTS fridayLab20131220.apps (
     id varchar(100),
     name varchar(100),
