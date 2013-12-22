@@ -170,7 +170,7 @@ function login() {
 
 function send() {
     $token = getTokenParam();
-    if($token) {
+    if(!$token) {
         return;
     }
 
