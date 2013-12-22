@@ -209,7 +209,8 @@ function send() {
             reportFailure('Payload is missing.');
             return;
         }
-        $payload = json_decode($rawPayload);
+        //  Decode the JSON and convert the payload into an array.
+        $payload = json_decode($rawPayload, TRUE);
         if(!$payload) {
             reportFailure('Payload is not correctly formed JSON.');
             return;

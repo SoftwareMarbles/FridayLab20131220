@@ -119,4 +119,6 @@ After some minor detours, the logins are working and so is token validation. Nex
 
 I find PHP documentation (as found on php.net) to be truly great: its complete, clean, easily digestible and community feedback is much ritcher than say on MSDN.
 
-### 10:01
+### 10:13
+I've added states for logins and messages, fatal error handling, bunch of other stuff. The one thing that isn't working yet is payload parsing for send API method. Or I'm sending badly formed JSON data...
+
