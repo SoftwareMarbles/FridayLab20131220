@@ -1,30 +1,21 @@
 <?php
 
+//  Setup the include path before trying to include any other source files.
+ini_set("include_path", ".:../:../epiphany/src/");
+
+include 'Epi.php';
+include 'Database.php'
+
 //  Constants used in the entire module.
 define('APP_NAME_PARAM', 'appName');
 
 define('UNIQUE_ID_PREFIX', 'friday-lab-20131220');
 define('STATUS_RETURN_PARAM', 'status');
-define('TABLE_APPS_ID_COLUMN', 'id');
-define('TABLE_APPS_NAME_COLUMN', 'name');
-define('TABLE_APPS_SECRET_COLUMN', 'secret');
-
-//  Now that all the data and constants have been defined/declared, setup API routes using Epiphany.
-ini_set("include_path", ".:../:../epiphany/src/");
-
-include 'Epi.php';
 
 Epi::setSetting('exceptions', true);
 Epi::init('route', 'database');
 
-EpiDatabase::employ(
-    'mysql',
-    'mysql',
-    'localhost',
-    'root',
-    'moot');
-
-setupDatabase();
+Database::setupDatabase();
 
 //  Heartbeat API doesn't receive any parameters.
 getRoute()->get('/', 'heartbeat');
@@ -37,19 +28,6 @@ getRoute()->get('/getStatistics', 'getStatistics');
 getRoute()->post('/logout', 'logout');
 getRoute()->post('/unregisterApp', 'unregisterApp');
 getRoute()->run();
-
-//  Copied from http://www.php.net/parse_url
-function convertUrlQuery($query) {
-    $queryParts = explode('&', $query);
-
-    $params = array();
-    foreach ($queryParts as $param) {
-        $item = explode('=', $param);
-        $params[$item[0]] = $item[1];
-    }
-
-    return $params;
-}
 
 function reportFailure($error) {
     echo json_encode(array(
@@ -89,9 +67,8 @@ function registerApp() {
     }
 
     //  If the app is already register just return its data.
-    $appData = $tableApps[$appName];
+    $appData = Database::queryAppsPerName($appName);
     if($appData) {
-        $appData['requestId'] = uniqid(UNIQUE_ID_PREFIX, true);
         reportSuccess($appData);
         return;
     }
@@ -100,17 +77,9 @@ function registerApp() {
     $appId = uniqid(UNIQUE_ID_PREFIX, true);
     $secret = uniqid(UNIQUE_ID_PREFIX, true);
 
-    //  Store the app data.
-    getDatabase()->execute('INSERT INTO apps(id, name, secret) VALUES(:id, :name, :secret)', array(
-        ':id' => $appId,
-        ':name' => $appName,
-        ':secret' => $secret));
+    //  Add the new app to the database and return its data.
+    $data = Database::addApp($appName, $appId, $secret);
 
-    //  Return the app data to the caller.
-    $data = array(
-        TABLE_APPS_ID_COLUMN => $appId,
-        TABLE_APPS_NAME_COLUMN => $appName,
-        TABLE_APPS_SECRET_COLUMN => $secret);
     reportSuccess($data);
 }
 
@@ -141,9 +110,7 @@ function getStatistics() {
         return;
     }
 
-    $stats = getDatabase()->one(
-        'SELECT COUNT(*) AS messageCount FROM messages WHERE appId = (SELECT id FROM apps WHERE appName = :appName)',
-        array(':appName' => $appName));
+    $stats = Database::queryStatsPerAppName($appName);
 
     reportSuccess($stats);
 }
@@ -154,36 +121,6 @@ function logout() {
 
 function unregisterApp() {
     reportSuccess();
-}
-
-function setupDatabase() {
-    $createStatements = array(
-'CREATE DATABASE IF NOT EXISTS fridayLab20131220;'
-,
-'
-DROP TABLE IF EXISTS fridayLab20131220.apps;
-
-CREATE TABLE IF NOT EXISTS fridayLab20131220.apps (
-    id varchar(100),
-    name varchar(100),
-    secret varchar(100)
-);
-',
-'
-CREATE TABLE IF NOT EXISTS fridayLab20131220.messages (
-    id varchar(100),
-    appId varchar(100),
-    status varchar(10)
-);
-',
-//  Our last statement is USE so that we switch the connection context to our db.
-'USE fridayLab20131220;'
-);
-
-    //  Execute all the create statements.
-    for ($i=0; $i < count($createStatements); $i++) {
-        getDatabase()->execute($createStatements[$i]);
-    }
 }
 
 ?>
