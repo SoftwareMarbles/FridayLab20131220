@@ -105,8 +105,8 @@ function registerApp() {
     }
 
     //  Generate unique app ID and its secret.
-    $appId = uniqid('id', true);
-    $secret = uniqid('secret', true);
+    $appId = uniqid('id.', true);
+    $secret = uniqid('secret.', true);
 
     //  Add the new app to the database and return its data.
     $data = Database::addApp($appName, $appId, $secret);
@@ -145,7 +145,7 @@ function login() {
     }
 
     //  Generate unique token.
-    $token = uniqid('token', true);
+    $token = uniqid('token.', true);
     //  Tokens for now all expire in a day.
     $expiresAt = new DateTime();
     $expiresAt->add(DateInterval::createFromDateString('1 day'));
