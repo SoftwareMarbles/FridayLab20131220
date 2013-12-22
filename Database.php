@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS fridayLab20131220.messages (
             ':secret' => $appSecret));
 
         //  As the result we return the row we just added from the database itself.
-        return queryAppsPerName($appName);
+        return Database::queryAppsPerName($appName);
     }
 
     public static function queryStatsPerAppName($appName) {
