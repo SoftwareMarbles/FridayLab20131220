@@ -148,7 +148,7 @@ function login() {
     $token = uniqid('token', true);
     //  Tokens for now all expire in a day.
     $expiresAt = new DateTime();
-    $expiresAt->add(new DateInterval('1 day'));
+    $expiresAt->add(DateInterval::createFromDateString('1 day'));
 
     //  Add the token to the database and return its data.
     $loginData = Database::addLogin($token, $appId, $expiresAt);
