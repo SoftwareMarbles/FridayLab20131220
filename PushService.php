@@ -14,7 +14,7 @@ class PushService
         // Instanciate a new ApnsPHP_Push object
         $push = new ApnsPHP_Push(
                 ApnsPHP_Abstract::ENVIRONMENT_SANDBOX,
-                '~/FridayLab20131220Push.pem'
+                '../certs/FridayLab20131220Push.pem'
         );
 
         // Set the Provider Certificate passphrase
