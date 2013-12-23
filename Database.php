@@ -22,51 +22,6 @@ class DatabaseLoginState
 
 class Database
 {
-    public static function setupDatabase()
-    {
-        EpiDatabase::employ(
-            'mysql',
-            'mysql',
-            'localhost',
-            'root',
-            'moot');
-
-        $createStatements = array(
-'CREATE DATABASE IF NOT EXISTS fridayLab20131220;'
-,
-'
-CREATE TABLE IF NOT EXISTS fridayLab20131220.apps (
-    id varchar(100),
-    name varchar(100),
-    secret varchar(100)
-);
-',
-'
-CREATE TABLE IF NOT EXISTS fridayLab20131220.messages (
-    id varchar(100),
-    token varchar(100),
-    state int
-);
-',
-'
-CREATE TABLE IF NOT EXISTS fridayLab20131220.logins (
-    token varchar(100),
-    appId varchar(100),
-    expiresAt datetime,
-    state int
-)
-',
-//  Our last statement is USE so that we switch the connection context to our db.
-'USE fridayLab20131220;'
-    );
-
-        //  Execute all the create statements.
-        for ($i=0; $i < count($createStatements); $i++)
-        {
-            getDatabase()->execute($createStatements[$i]);
-        }
-    }
-
     //  Functions related to apps table.
     public static function queryAppsPerName($appName)
     {
@@ -88,13 +43,6 @@ CREATE TABLE IF NOT EXISTS fridayLab20131220.logins (
 
         //  As the result we return the row we just added from the database itself.
         return Database::queryAppsPerName($appName);
-    }
-
-    public static function queryStatsPerAppName($appName)
-    {
-        return getDatabase()->one(
-            'SELECT COUNT(*) AS messageCount FROM messages WHERE appId = (SELECT id FROM apps WHERE appName = :appName)',
-            array(':appName' => $appName));
     }
 
     //  Functions related to logins table.
@@ -123,6 +71,87 @@ CREATE TABLE IF NOT EXISTS fridayLab20131220.logins (
         getDatabase()->execute('UPDATE login SET state = :state WHERE token = :token',
             array(':token' => $token, ':state' => $state));
     }
+
+    //  Functions related to messages table.
+    public static function queryMessagesPerId($messageId)
+    {
+        return getDatabase()->one(
+            'SELECT * FROM messages WHERE id = :messageId',
+            array(':messageId' => $messageId));
+    }
+
+    public static function addMessage($messageId, $token, $state, $type, $recepient, $message)
+    {
+        //  Store the data.
+        getDatabase()->execute('INSERT INTO messages(id, token, state, type, recepient, message) VALUES(:id, :token, :state, :type, :recepient, :message)', array(
+            ':id' => $messageId,
+            ':token' => $token,
+            ':state' => $state,
+            ':type' => $type,
+            ':recepient' => $recepient,
+            ':message' => $message));
+
+        //  As the result we return the row we just added from the database itself.
+        return Database::queryMessagesPerId($messageId);
+    }
+
+    public static function queryStatsPerAppName($appName)
+    {
+        return getDatabase()->one(
+            'SELECT COUNT(*) AS messageCount FROM messages WHERE appId = (SELECT id FROM apps WHERE appName = :appName)',
+            array(':appName' => $appName));
+    }
+
+    //  Sets up the database (creates it or updates it)
+    public static function setupDatabase()
+    {
+        EpiDatabase::employ(
+            'mysql',
+            'mysql',
+            'localhost',
+            'root',
+            'moot');
+
+        $createStatements = array(
+'CREATE DATABASE IF NOT EXISTS fridayLab20131220;'
+,
+'
+CREATE TABLE IF NOT EXISTS fridayLab20131220.apps (
+    id varchar(100),
+    name varchar(100),
+    secret varchar(100)
+);
+',
+'
+DROP TABLE IF EXISTS fridayLab20131220.messages;
+CREATE TABLE IF NOT EXISTS fridayLab20131220.messages (
+    id varchar(100),
+    token varchar(100),
+    state int,
+    type int,
+    recepient varchar(100) SET utf8 COLLATE utf8_unicode_ci,
+    text nvarchar(2000) SET utf8 COLLATE utf8_unicode_ci
+);
+',
+'
+CREATE TABLE IF NOT EXISTS fridayLab20131220.logins (
+    token varchar(100),
+    appId varchar(100),
+    expiresAt datetime,
+    state int
+)
+',
+//  Our last statement is USE so that we switch the connection context to our db.
+'USE fridayLab20131220;'
+    );
+
+        //  Execute all the create statements.
+        for ($i=0; $i < count($createStatements); $i++)
+        {
+            getDatabase()->execute($createStatements[$i]);
+        }
+    }
+
 }
 
 ?>

@@ -122,3 +122,8 @@ I find PHP documentation (as found on php.net) to be truly great: its complete, 
 ### 10:13
 I've added states for logins and messages, fatal error handling, bunch of other stuff. The one thing that isn't working yet is payload parsing for send API method. Or I'm sending badly formed JSON data...
 
+### 10:30
+I finally tracked down the problem to not requesting json_decode to return the result in an associative array. But it's Sunday so it's kids' time as well and we are now off to [MIM](http://http://www.mim.cl). I'll wrap this up in PM.
+
+### 20:50
+Though shall not make work plans on Sunday! But back in the saddle...
