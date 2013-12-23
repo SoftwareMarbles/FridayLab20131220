@@ -31,7 +31,6 @@ define('APP_NAME_PARAM', 'appName');
 define('APP_ID_PARAM', 'appId');
 define('APP_SECRET_PARAM', 'appSecret');
 define('LOGIN_TOKEN_PARAM', 'token');
-
 define('STATUS_RETURN_PARAM', 'status');
 
 Epi::setSetting('exceptions', true);
@@ -257,13 +256,13 @@ function send()
             return;
         }
 
-        const TYPE = 'type';
-        const RECEPIENT = 'recepient';
-        const MESSAGE = 'message';
+        $TYPE = 'type';
+        $RECEPIENT = 'recepient';
+        $MESSAGE = 'message';
 
-        if(!isset($payload[TYPE])
-            || !isset($payload[RECEPIENT])
-            || !isset($payload[MESSAGE]))
+        if(!isset($payload[$TYPE])
+            || !isset($payload[$RECEPIENT])
+            || !isset($payload[$MESSAGE]))
         {
             reportFailure('Payload lacks non-optional properties.');
             return;
@@ -276,9 +275,9 @@ function send()
             $messageId,
             $token,
             DatabaseMessageState::Waiting,
-            $payload[TYPE],
-            $payload[RECEPIENT],
-            $payload[MESSAGE]);
+            $payload[$TYPE],
+            $payload[$RECEPIENT],
+            $payload[$MESSAGE]);
         if(!$messageData)
         {
            reportFailure('Couldn\'t add messageStatus data.');
