@@ -106,8 +106,8 @@ class Database
         return getDatabase()->one(
             '
         SELECT
-            (SELECT COUNT(*) AS messageCount FROM messages WHERE state = 0 AND token IN (SELECT token FROM logins WHERE appId = :appId)) AS MessagesWaiting,
-            (SELECT COUNT(*) AS messageCount FROM messages WHERE state = 1 AND token IN (SELECT token FROM logins WHERE appId = :appId)) AS MessagesSent
+            (SELECT COUNT(*) AS messageCount FROM messages WHERE state = 0 AND token IN (SELECT token FROM logins WHERE appId = :appId)) AS messagesWaiting,
+            (SELECT COUNT(*) AS messageCount FROM messages WHERE state = 1 AND token IN (SELECT token FROM logins WHERE appId = :appId)) AS messagesSent
             ',
             array(':appId' => $appId));
     }
