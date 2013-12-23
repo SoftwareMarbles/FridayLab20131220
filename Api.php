@@ -46,19 +46,6 @@ class Api
         echo json_encode($result);
     }
 
-    //  The functions implementing API.
-    static function heartbeat()
-    {
-        $now = new DateTime();
-
-        //  Return the format and the current server time.
-        $data = array(
-            'format' => 'json',
-            'time' => $now->format('Y-m-d H:i:s.u'));
-
-        reportSuccess($data);
-    }
-
     //  Returns the given parameter's value or reports failure if the parameter is not available and not optional.
     static function getParam($param, $optional = FALSE)
     {
@@ -112,7 +99,20 @@ class Api
             && $loginData['state'] == DatabaseLoginState::LoggedIn;
     }
 
-    static function registerApp()
+    //  The functions implementing API.
+    public static function heartbeat()
+    {
+        $now = new DateTime();
+
+        //  Return the format and the current server time.
+        $data = array(
+            'format' => 'json',
+            'time' => $now->format('Y-m-d H:i:s.u'));
+
+        reportSuccess($data);
+    }
+
+    public static function registerApp()
     {
         try
         {
@@ -150,7 +150,7 @@ class Api
         }
     }
 
-    static function login()
+    public static function login()
     {
         try
         {
@@ -205,7 +205,7 @@ class Api
         }
     }
 
-    static function send()
+    public static function send()
     {
         try
         {
@@ -265,7 +265,7 @@ class Api
             }
 
             //  Now send the message.
-
+            PushService::push($messageData);
 
             reportSuccess($messageData);
         }
@@ -275,7 +275,7 @@ class Api
         }
     }
 
-    static function getStatus()
+    public static function getStatus()
     {
         try
         {
@@ -300,7 +300,7 @@ class Api
         }
     }
 
-    static function getStatistics()
+    public static function getStatistics()
     {
         try
         {
@@ -320,7 +320,7 @@ class Api
         }
     }
 
-    static function logout()
+    public static function logout()
     {
         try
         {
@@ -341,7 +341,7 @@ class Api
         }
     }
 
-    static function unregisterApp()
+    public static function unregisterApp()
     {
         try
         {
