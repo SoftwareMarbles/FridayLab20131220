@@ -31,7 +31,7 @@ include 'PushService.php';
 include 'Api.php';
 
 Epi::setSetting('exceptions', true);
-Epi::init('route', 'database');
+Epi::init('api', 'route', 'database');
 
 Database::setupDatabase();
 PushService::setupService();

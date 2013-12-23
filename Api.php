@@ -13,15 +13,15 @@ class Api
     public static function setupApi()
     {
         //  Heartbeat API doesn't receive any parameters.
-        getRoute()->get('/', 'Api::heartbeat');
+        getApi()->get('/', array('Api', 'heartbeat'), EpiApi::external);
         //  Register API receives the name of the app to be registered.
-        getRoute()->post('/registerApp', 'Api::registerApp');
-        getRoute()->post('/login', 'Api::login');
-        getRoute()->post('/send', 'Api::send');
-        getRoute()->get('/getStatus', 'Api::getStatus');
-        getRoute()->get('/getStatistics', 'Api::getStatistics');
-        getRoute()->post('/logout', 'Api::logout');
-        getRoute()->post('/unregisterApp', 'Api::unregisterApp');
+        getApi()->post('/registerApp', array('Api', 'registerApp'), EpiApi::external));
+        getApi()->post('/login', array('Api', 'login'), EpiApi::external));
+        getApi()->post('/send', array('Api', 'send'), EpiApi::external));
+        getApi()->get('/getStatus', array('Api', 'getStatus'), EpiApi::external));
+        getApi()->get('/getStatistics', array('Api', 'getStatistics'), EpiApi::external));
+        getApi()->post('/logout', array('Api', 'logout'), EpiApi::external));
+        getApi()->post('/unregisterApp', array('Api', 'unres'), EpiApi::external));
         getRoute()->run();
     }
 
@@ -107,7 +107,8 @@ class Api
         //  Return the format and the current server time.
         $data = array(
             'format' => 'json',
-            'time' => $now->format('Y-m-d H:i:s.u'));
+            'time' => $now->format('Y-m-d H:i:s.u'),
+            'version' => '0.02');
 
         reportSuccess($data);
     }
