@@ -68,7 +68,7 @@ class Database
 
     public static function updateLoginState($token, $state)
     {
-        getDatabase()->execute('UPDATE login SET state = :state WHERE token = :token',
+        getDatabase()->execute('UPDATE logins SET state = :state WHERE token = :token',
             array(':token' => $token, ':state' => $state));
     }
 
@@ -97,7 +97,7 @@ class Database
 
     public static function updateMessageState($messageId, $state)
     {
-        getDatabase()->execute('UPDATE message SET state = :state WHERE id = :messageId',
+        getDatabase()->execute('UPDATE messages SET state = :state WHERE id = :messageId',
             array(':messageId' => $messageId, ':state' => $state));
     }
 
