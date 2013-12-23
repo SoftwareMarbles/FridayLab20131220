@@ -101,11 +101,11 @@ class Database
             array(':messageId' => $messageId, ':state' => $state));
     }
 
-    public static function queryStatsPerAppName($appName)
+    public static function queryStatsPerAppId($appId)
     {
         return getDatabase()->one(
-            'SELECT COUNT(*) AS messageCount FROM messages WHERE appId = (SELECT id FROM apps WHERE appName = :appName)',
-            array(':appName' => $appName));
+            'SELECT COUNT(*) AS messageCount FROM messages WHERE token IN (SELECT token FROM logins WHERE appId = :appId)',
+            array(':appId' => $appId));
     }
 
     //  Sets up the database (creates it or updates it)

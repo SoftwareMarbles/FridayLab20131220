@@ -328,13 +328,13 @@ class Api
     {
         try
         {
-            $appName = Api::getAppNameParam();
-            if(!$appName)
+            $appId = Api::getAppIdParam();
+            if(!$appId)
             {
                 return;
             }
 
-            $stats = Database::queryStatsPerAppName($appName);
+            $stats = Database::queryStatsPerAppId($appId);
 
             Api::reportSuccess($stats);
         }
