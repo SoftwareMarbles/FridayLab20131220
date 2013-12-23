@@ -13,15 +13,15 @@ class Api
     public static function setupApi()
     {
         //  Heartbeat API doesn't receive any parameters.
-        getRoute()->get('/', 'heartbeat');
+        getRoute()->get('/', 'Api::heartbeat');
         //  Register API receives the name of the app to be registered.
-        getRoute()->post('/registerApp', 'registerApp');
-        getRoute()->post('/login', 'login');
-        getRoute()->post('/send', 'send');
-        getRoute()->get('/getStatus', 'getStatus');
-        getRoute()->get('/getStatistics', 'getStatistics');
-        getRoute()->post('/logout', 'logout');
-        getRoute()->post('/unregisterApp', 'unregisterApp');
+        getRoute()->post('/registerApp', 'Api::registerApp');
+        getRoute()->post('/login', 'Api::login');
+        getRoute()->post('/send', 'Api::send');
+        getRoute()->get('/getStatus', 'Api::getStatus');
+        getRoute()->get('/getStatistics', 'Api::getStatistics');
+        getRoute()->post('/logout', 'Api::logout');
+        getRoute()->post('/unregisterApp', 'Api::unregisterApp');
         getRoute()->run();
     }
 
