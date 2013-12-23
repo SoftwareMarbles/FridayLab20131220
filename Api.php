@@ -26,9 +26,18 @@ class Api
         getRoute()->run();
     }
 
+    //  As seen here: http://stackoverflow.com/questions/169428/php-datetime-microseconds-always-returns-0
+    static function nowWithUseconds()
+    {
+        list($usec, $sec) = explode(' ', microtime());
+        $usec = substr($usec, 2, 6);
+        $datetime_now = date('Y-m-d H:i:s\.', $sec).$usec;
+        return new DateTime($datetime_now, new DateTimeZone(date_default_timezone_get()));
+    }
+
     static function getTimestamp()
     {
-        $now = new DateTime();
+        $now = nowWithUseconds();
         return $now->format('Y-m-d H:i:s.u');
     }
 
