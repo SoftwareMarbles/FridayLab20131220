@@ -1,6 +1,6 @@
 <?php
 
-require_once './ApnsPHP/Autoload.php';
+require_once 'ApnsPHP/Autoload.php';
 
 class PushService
 {
