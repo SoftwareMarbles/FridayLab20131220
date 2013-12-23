@@ -116,15 +116,16 @@ class Database
 'CREATE DATABASE IF NOT EXISTS fridayLab20131220;'
 ,
 '
-CREATE TABLE IF NOT EXISTS fridayLab20131220.apps (
+CREATE TABLE IF NOT EXISTS fridayLab20131220.apps
+(
     id varchar(100),
     name varchar(100),
     secret varchar(100)
 );
 ',
 '
-DROP TABLE IF EXISTS fridayLab20131220.messages;
-CREATE TABLE IF NOT EXISTS fridayLab20131220.messages (
+CREATE TABLE IF NOT EXISTS fridayLab20131220.messages
+(
     id varchar(100),
     token varchar(100),
     state int,
@@ -134,7 +135,8 @@ CREATE TABLE IF NOT EXISTS fridayLab20131220.messages (
 );
 ',
 '
-CREATE TABLE IF NOT EXISTS fridayLab20131220.logins (
+CREATE TABLE IF NOT EXISTS fridayLab20131220.logins
+(
     token varchar(100),
     appId varchar(100),
     expiresAt datetime,
