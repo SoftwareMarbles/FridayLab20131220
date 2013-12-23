@@ -80,16 +80,16 @@ class Database
             array(':messageId' => $messageId));
     }
 
-    public static function addMessage($messageId, $token, $state, $type, $recepient, $message)
+    public static function addMessage($messageId, $token, $state, $type, $recepient, $messageText)
     {
         //  Store the data.
-        getDatabase()->execute('INSERT INTO messages(id, token, state, type, recepient, message) VALUES(:id, :token, :state, :type, :recepient, :message)', array(
+        getDatabase()->execute('INSERT INTO messages(id, token, state, type, recepient, messageText) VALUES(:id, :token, :state, :type, :recepient, :messageText)', array(
             ':id' => $messageId,
             ':token' => $token,
             ':state' => $state,
             ':type' => $type,
             ':recepient' => $recepient,
-            ':message' => $message));
+            ':messageText' => $messageText));
 
         //  As the result we return the row we just added from the database itself.
         return Database::queryMessagesPerId($messageId);
@@ -130,8 +130,8 @@ CREATE TABLE IF NOT EXISTS fridayLab20131220.messages
     token varchar(100),
     state int,
     type int,
-    recepient varchar(100) SET utf8 COLLATE utf8_unicode_ci,
-    text varchar(2000) SET utf8 COLLATE utf8_unicode_ci
+    recepient varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+    messageText varchar(2000) CHARACTER SET utf8 COLLATE utf8_unicode_ci
 );
 ',
 '

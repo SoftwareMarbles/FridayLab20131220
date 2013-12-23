@@ -258,11 +258,11 @@ function send()
 
         $TYPE = 'type';
         $RECEPIENT = 'recepient';
-        $MESSAGE = 'message';
+        $MESSAGE_TEXT = 'messageText';
 
         if(!isset($payload[$TYPE])
             || !isset($payload[$RECEPIENT])
-            || !isset($payload[$MESSAGE]))
+            || !isset($payload[$MESSAGE_TEXT]))
         {
             reportFailure('Payload lacks non-optional properties.');
             return;
@@ -277,7 +277,7 @@ function send()
             DatabaseMessageState::Waiting,
             $payload[$TYPE],
             $payload[$RECEPIENT],
-            $payload[$MESSAGE]);
+            $payload[$MESSAGE_TEXT]);
         if(!$messageData)
         {
            reportFailure('Couldn\'t add messageStatus data.');
