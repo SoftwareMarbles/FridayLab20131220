@@ -15,13 +15,13 @@ class Api
         //  Heartbeat API doesn't receive any parameters.
         getApi()->get('/', array('Api', 'heartbeat'), EpiApi::external);
         //  Register API receives the name of the app to be registered.
-        getApi()->post('/registerApp', array('Api', 'registerApp'), EpiApi::external));
-        getApi()->post('/login', array('Api', 'login'), EpiApi::external));
-        getApi()->post('/send', array('Api', 'send'), EpiApi::external));
-        getApi()->get('/getStatus', array('Api', 'getStatus'), EpiApi::external));
-        getApi()->get('/getStatistics', array('Api', 'getStatistics'), EpiApi::external));
-        getApi()->post('/logout', array('Api', 'logout'), EpiApi::external));
-        getApi()->post('/unregisterApp', array('Api', 'unres'), EpiApi::external));
+        getApi()->post('/registerApp', array('Api', 'registerApp'), EpiApi::external);
+        getApi()->post('/login', array('Api', 'login'), EpiApi::external);
+        getApi()->post('/send', array('Api', 'send'), EpiApi::external);
+        getApi()->get('/getStatus', array('Api', 'getStatus'), EpiApi::external);
+        getApi()->get('/getStatistics', array('Api', 'getStatistics'), EpiApi::external);
+        getApi()->post('/logout', array('Api', 'logout'), EpiApi::external);
+        getApi()->post('/unregisterApp', array('Api', 'unres'), EpiApi::external);
         getRoute()->run();
     }
 
