@@ -13,7 +13,9 @@ function fatalErrorHandler()
     # Checking if last error is a fatal error
     if(($error['type'] === E_ERROR) || ($error['type'] === E_USER_ERROR))
     {
-        reportFailure('A fatal error has occurred in ' . $error['file'] . ', line ' . $error['line'] . ': ' . $error['message']);
+        echo json_encode(array(
+            'status' => 'fail',
+            'error' => 'A fatal error has occurred in ' . $error['file'] . ', line ' . $error['line'] . ': ' . $error['message']));
     }
 }
 
