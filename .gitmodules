@@ -1,3 +1,6 @@
 [submodule "ApnsPHP"]
 	path = ApnsPHP
 	url = git@github.com:ierceg/ApnsPHP.git
+[submodule "epiphany"]
+	path = epiphany
+	url = git@github.com:ierceg/epiphany.git
