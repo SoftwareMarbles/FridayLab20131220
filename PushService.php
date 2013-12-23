@@ -21,7 +21,7 @@ class PushService
         $push->setProviderCertificatePassphrase('EQLcrYgYjY1FxQ3d9mpTSqpsCM7epeZlqGg7acGy2CYgfracm1WlS7b7gUX1MBrERte8gJXCUfez88fDZ2f6Tf27a0Ilt5itvdVg');
 
         // Set the Root Certificate Autority to verify the Apple remote peer
-        $push->setRootCertificationAuthority('entrust_root_certification_authority.pem');
+        $push->setRootCertificationAuthority('../certs/entrust_root_certification_authority.pem');
 
         // Connect to the Apple Push Notification Service
         $push->connect();
