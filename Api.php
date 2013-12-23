@@ -28,7 +28,7 @@ class Api
 
     static function getTimestamp()
     {
-        return (new DateTime)->format('Y-m-d H:i:s.u');
+        return (new DateTime())->format('Y-m-d H:i:s.u');
     }
 
     static function reportFailure($error)
