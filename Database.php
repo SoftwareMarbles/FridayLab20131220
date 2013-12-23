@@ -95,6 +95,12 @@ class Database
         return Database::queryMessagesPerId($messageId);
     }
 
+    public static function updateMessageState($messageId, $state)
+    {
+        getDatabase()->execute('UPDATE message SET state = :state WHERE id = :messageId',
+            array(':messageId' => $messageId, ':state' => $state));
+    }
+
     public static function queryStatsPerAppName($appName)
     {
         return getDatabase()->one(

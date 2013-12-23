@@ -281,9 +281,17 @@ class Api
             }
 
             //  Now send the message.
-            PushService::push($messageData);
+            $pushError = PushService::push($messageData);
+            if($pushError)
+            {
+                reportFailure($pushError);
+                return;
+            }
 
-            Api::reportSuccess($messageData);
+            //  Update the message's status and send back the id.
+            Database::updateMessageState($messageId, DatabaseMessageState::Sent);
+
+            Api::reportSuccess(array("messageId" => $messageId));
         }
         catch(Exception $e)
         {

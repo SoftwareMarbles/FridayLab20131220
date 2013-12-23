@@ -132,3 +132,44 @@ Though shall not make work plans on Sunday! But back in the saddle...
 Everything should be working now but now I need to test it against APNS and for that I need test certificate. I'm using ApnsPHP library and this time I forked it before I included it as a Git submodule. So any pushes I might have against it will go to my Git repository and not the original.
 
 Anyway, I got my certificate on the local drive together with my private key and I'm now going to convert them to PEM files used by ApnsPHP. I usually follow the instructions described in [this](http://www.raywenderlich.com/32960/apple-push-notification-services-in-ios-6-tutorial-part-1) article ("Making the App ID and SSL Certificate" section).
+
+### 22:58
+After some testing and failing I got push working but of course there is no app that is supposed to be receiving these notifications. I have to create App ID when I was applying for push certificate and that's the one that I'll use now to create an iPhone app.
+
+### 23:40
+After the domestic peace has returned (kids are asleep) I'm wrapping this up:
+
+ 1. New iOS app.
+ 2. In `didFinishLaunchingWithOptions` I add:
+
+    //  Every time we launch we have to register the device for remote notifications.
+    [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert];
+
+ 3. I also add the following to the application delegate:
+
+    - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+        NSLog(@"Device token is %@", deviceToken);
+    }
+
+    - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+        NSLog(@"Push notification registration failed: %@", error);
+    }
+
+ 4. Run the app (but not in the simulator!)
+ 5. Grab the device token from the debugger output and clean it up for sending to API.
+ 6. Close the app on your device.
+ 7. Issue a new API call:
+
+    curl --data '{"type":0,"recepient":"<your token goes here>","messageText":"test"}' http://127.0.0.1/send?token=<your login token goes here>
+
+ 8. Receive the message!
+
+It's a wrap!
+
+### 22:54
+Let's see about some statistics. RescueTime reports that I've been on my Mac for 6 hours and 7 minutes today out of which 6 hours and 2 minutes (!) were spent productively. Breaking it down, I spent 02:45 in Sublime Text 2, 01:41 in Terminal and the 3rd biggest application I used was... [Stack Overflow](http://stackoverflow.com) where I spent 11 minutes.
+
+So to sum it all up I've spent the total of about 6 hours coding and the rest (about 11 hours) monkeying around with the infrastructure and running API tests (which I always ran with `curl` from Terminal).
+
+Ah, there is one more thing that I need to do...
+
