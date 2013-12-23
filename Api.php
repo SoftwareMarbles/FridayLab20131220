@@ -7,6 +7,7 @@ define('APP_SECRET_PARAM', 'appSecret');
 define('LOGIN_TOKEN_PARAM', 'token');
 define('MESSAGE_ID_PARAM', 'messageId');
 define('STATUS_RETURN_PARAM', 'status');
+define('TIMESTAMP_RETURN_PARAM', 'timestamp');
 
 class Api
 {
@@ -25,10 +26,16 @@ class Api
         getRoute()->run();
     }
 
+    static function getTimestamp()
+    {
+        return (new DateTime)->format('Y-m-d H:i:s.u');
+    }
+
     static function reportFailure($error)
     {
         echo json_encode(array(
             STATUS_RETURN_PARAM => 'fail',
+            TIMESTAMP_RETURN_PARAM => Api::getTimestamp(),
             'error' => $error));
     }
 
@@ -42,6 +49,7 @@ class Api
 
         //  Always add the status success to the result array.
         $result[STATUS_RETURN_PARAM] = 'success';
+        $result[TIMESTAMP_RETURN_PARAM] = Api::getTimestamp();
 
         echo json_encode($result);
     }
@@ -57,7 +65,7 @@ class Api
 
         if(!$optional)
         {
-            reportFailure(sprintf('%s parameter is not optional.', $param));
+            Api::reportFailure(sprintf('%s parameter is not optional.', $param));
         }
 
         return NULL;
@@ -65,27 +73,27 @@ class Api
 
     static function getAppNameParam()
     {
-        return getParam(APP_NAME_PARAM);
+        return Api::getParam(APP_NAME_PARAM);
     }
 
     static function getAppIdParam()
     {
-        return getParam(APP_ID_PARAM);
+        return Api::getParam(APP_ID_PARAM);
     }
 
     static function getAppSecretParam()
     {
-        return getParam(APP_SECRET_PARAM);
+        return Api::getParam(APP_SECRET_PARAM);
     }
 
     static function getTokenParam()
     {
-        return getParam(LOGIN_TOKEN_PARAM);
+        return Api::getParam(LOGIN_TOKEN_PARAM);
     }
 
     static function getMessageIdParam()
     {
-        return getParam(MESSAGE_ID_PARAM);
+        return Api::getParam(MESSAGE_ID_PARAM);
     }
 
     static function tokenIsValid($token)
@@ -102,22 +110,19 @@ class Api
     //  The functions implementing API.
     public static function heartbeat()
     {
-        $now = new DateTime();
-
         //  Return the format and the current server time.
         $data = array(
             'format' => 'json',
-            'time' => $now->format('Y-m-d H:i:s.u'),
             'version' => '0.02');
 
-        reportSuccess($data);
+        Api::reportSuccess($data);
     }
 
     public static function registerApp()
     {
         try
         {
-            $appName =getAppNameParam();
+            $appName = Api::getAppNameParam();
             if(!$appName)
             {
                 return;
@@ -127,7 +132,7 @@ class Api
             $appData = Database::queryAppsPerName($appName);
             if($appData)
             {
-                reportSuccess($appData);
+                Api::reportSuccess($appData);
                 return;
             }
 
@@ -139,15 +144,15 @@ class Api
             $data = Database::addApp($appName, $appId, $secret);
             if(!data)
             {
-                reportFailure('Couldn\'t add app data.');
+                Api::reportFailure('Couldn\'t add app data.');
                 return;
             }
 
-            reportSuccess($data);
+            Api::reportSuccess($data);
         }
         catch(Exception $e)
         {
-            reportFailure($e->getMessage());
+            Api::reportFailure($e->getMessage());
         }
     }
 
@@ -156,12 +161,12 @@ class Api
         try
         {
             //  We need both app's ID and secret to correctly login.
-            $appId = getAppIdParam();
+            $appId = Api::getAppIdParam();
             if(!$appId)
             {
                 return;
             }
-            $appSecret = getAppSecretParam();
+            $appSecret = Api::getAppSecretParam();
             if(!$appSecret)
             {
                 return;
@@ -172,7 +177,7 @@ class Api
             $appData = Database::queryAppsPerId($appId);
             if(!$appData)
             {
-                reportFailure('Incorrect app ID.');
+                Api::reportFailure('Incorrect app ID.');
                 return;
             }
             if($appData['secret'] != $appSecret)
@@ -180,7 +185,7 @@ class Api
                 //  We report the bad secret error openly. There are other API calls where a possible attacker
                 //  could check the validity of the app ID in his or her posession so it makes no sense to obfuscate
                 //  the message here.
-                reportFailure('Incorrect app secret.');
+                Api::reportFailure('Incorrect app secret.');
                 return;
             }
 
@@ -194,15 +199,15 @@ class Api
             $loginData = Database::addLogin($token, $appId, $expiresAt, DatabaseLoginState::LoggedIn);
             if(!loginData)
             {
-                reportFailure('Couldn\'t add login data.');
+                Api::reportFailure('Couldn\'t add login data.');
                 return;
             }
 
-            reportSuccess($loginData);
+            Api::reportSuccess($loginData);
         }
         catch(Exception $e)
         {
-            reportFailure($e->getMessage());
+            Api::reportFailure($e->getMessage());
         }
     }
 
@@ -210,7 +215,7 @@ class Api
     {
         try
         {
-            $token = getTokenParam();
+            $token = Api::getTokenParam();
             if(!$token)
             {
                 return;
@@ -218,7 +223,7 @@ class Api
 
             if(!tokenIsValid($token))
             {
-                reportFailure('Token has expired.');
+                Api::reportFailure('Token has expired.');
                 return;
             }
 
@@ -226,14 +231,14 @@ class Api
             $rawPayload = file_get_contents('php://input');
             if(!$rawPayload)
             {
-                reportFailure('Payload is missing.');
+                Api::reportFailure('Payload is missing.');
                 return;
             }
             //  Decode the JSON and convert the payload into an array.
             $payload = json_decode($rawPayload, TRUE);
             if(!$payload)
             {
-                reportFailure('Payload is not correctly formed JSON.');
+                Api::reportFailure('Payload is not correctly formed JSON.');
                 return;
             }
 
@@ -245,7 +250,7 @@ class Api
                 || !isset($payload[$RECEPIENT])
                 || !isset($payload[$MESSAGE_TEXT]))
             {
-                reportFailure('Payload lacks non-optional properties.');
+                Api::reportFailure('Payload lacks non-optional properties.');
                 return;
             }
 
@@ -261,18 +266,18 @@ class Api
                 $payload[$MESSAGE_TEXT]);
             if(!$messageData)
             {
-               reportFailure('Couldn\'t add messageStatus data.');
+               Api::reportFailure('Couldn\'t add messageStatus data.');
                return;
             }
 
             //  Now send the message.
             PushService::push($messageData);
 
-            reportSuccess($messageData);
+            Api::reportSuccess($messageData);
         }
         catch(Exception $e)
         {
-            reportFailure($e->getMessage());
+            Api::reportFailure($e->getMessage());
         }
     }
 
@@ -280,7 +285,7 @@ class Api
     {
         try
         {
-            $messageId = getMessageIdParam();
+            $messageId = Api::getMessageIdParam();
             if(!$messageId)
             {
                 return;
@@ -289,15 +294,15 @@ class Api
             $messageData = Database::queryMessagesPerId($messageId);
             if(!$messageData)
             {
-                reportFailure('Couldn\'t find the message.');
+                Api::reportFailure('Couldn\'t find the message.');
                 return;
             }
 
-            reportSuccess($messageData);
+            Api::reportSuccess($messageData);
         }
         catch(Exception $e)
         {
-            reportFailure($e->getMessage());
+            Api::reportFailure($e->getMessage());
         }
     }
 
@@ -305,7 +310,7 @@ class Api
     {
         try
         {
-            $appName = getAppNameParam();
+            $appName = Api::getAppNameParam();
             if(!$appName)
             {
                 return;
@@ -313,11 +318,11 @@ class Api
 
             $stats = Database::queryStatsPerAppName($appName);
 
-            reportSuccess($stats);
+            Api::reportSuccess($stats);
         }
         catch(Exception $e)
         {
-            reportFailure($e->getMessage());
+            Api::reportFailure($e->getMessage());
         }
     }
 
@@ -325,7 +330,7 @@ class Api
     {
         try
         {
-            $token = getTokenParam();
+            $token = Api::getTokenParam();
             if(!$token)
             {
                 return;
@@ -334,11 +339,11 @@ class Api
             //  This cannot logically fail as we don't care if the client tries to log out an inexisting login.
             Database::updateLoginState($token, DatabaseLoginState::LoggedOut);
 
-            reportSuccess();
+            Api::reportSuccess();
         }
         catch(Exception $e)
         {
-            reportFailure($e->getMessage());
+            Api::reportFailure($e->getMessage());
         }
     }
 
@@ -346,11 +351,11 @@ class Api
     {
         try
         {
-            reportSuccess();
+            Api::reportSuccess();
         }
         catch(Exception $e)
         {
-            reportFailure($e->getMessage());
+            Api::reportFailure($e->getMessage());
         }
     }
 }
