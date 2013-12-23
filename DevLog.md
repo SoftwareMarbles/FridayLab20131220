@@ -127,3 +127,8 @@ I finally tracked down the problem to not requesting json_decode to return the r
 
 ### 20:50
 Though shall not make work plans on Sunday! But back in the saddle...
+
+### 22:10
+Everything should be working now but now I need to test it against APNS and for that I need test certificate. I'm using ApnsPHP library and this time I forked it before I included it as a Git submodule. So any pushes I might have against it will go to my Git repository and not the original.
+
+Anyway, I got my certificate on the local drive together with my private key and I'm now going to convert them to PEM files used by ApnsPHP. I usually follow the instructions described in [this](http://www.raywenderlich.com/32960/apple-push-notification-services-in-ios-6-tutorial-part-1) article ("Making the App ID and SSL Certificate" section).

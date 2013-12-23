@@ -14,11 +14,11 @@ class PushService
         // Instanciate a new ApnsPHP_Push object
         $push = new ApnsPHP_Push(
                 ApnsPHP_Abstract::ENVIRONMENT_SANDBOX,
-                'server_certificates_bundle_sandbox.pem'
+                '~/FridayLab20131220Push.pem'
         );
 
         // Set the Provider Certificate passphrase
-        $push->setProviderCertificatePassphrase('test');
+        $push->setProviderCertificatePassphrase('EQLcrYgYjY1FxQ3d9mpTSqpsCM7epeZlqGg7acGy2CYgfracm1WlS7b7gUX1MBrERte8gJXCUfez88fDZ2f6Tf27a0Ilt5itvdVg');
 
         // Set the Root Certificate Autority to verify the Apple remote peer
         $push->setRootCertificationAuthority('entrust_root_certification_authority.pem');
@@ -28,13 +28,6 @@ class PushService
 
         // Instantiate a new Message with a single recipient
         $message = new ApnsPHP_Message($messageData['recepient']);
-
-        // Set a custom identifier. To get back this identifier use the getCustomIdentifier() method
-        // over a ApnsPHP_Message object retrieved with the getErrors() message.
-        $message->setCustomIdentifier("Message-Badge-3");
-
-        // Set badge icon to "1"
-        $message->setBadge(isset($messageData['badge']) ? 0 : $messageData['badge']);
 
         // Set a simple welcome text
         $message->setText($messageData['messageText']);
