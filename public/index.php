@@ -26,6 +26,7 @@ ini_set("include_path", ".:../:../epiphany/src/:../ApnsPHP/");
 include 'Epi.php';
 include 'Database.php';
 include 'PushService.php';
+include 'Api.php';
 
 Epi::setSetting('exceptions', true);
 Epi::init('route', 'database');
