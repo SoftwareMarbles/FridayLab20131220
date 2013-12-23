@@ -231,7 +231,7 @@ class Api
                 return;
             }
 
-            if(!tokenIsValid($token))
+            if(!Api::tokenIsValid($token))
             {
                 Api::reportFailure('Token has expired.');
                 return;
