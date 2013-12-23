@@ -37,7 +37,7 @@ class Api
 
     static function getTimestamp()
     {
-        $now = nowWithUseconds();
+        $now = Api::nowWithUseconds();
         return $now->format('Y-m-d H:i:s.u');
     }
 
