@@ -130,8 +130,8 @@ CREATE TABLE IF NOT EXISTS fridayLab20131220.messages
     token varchar(100),
     state int,
     type int,
-    recepient varchar(100) SET utf8,
-    text nvarchar(2000) SET utf8
+    recepient varchar(100) SET utf8 COLLATE utf8_unicode_ci,
+    text varchar(2000) SET utf8 COLLATE utf8_unicode_ci
 );
 ',
 '
