@@ -173,3 +173,7 @@ So to sum it all up I've spent the total of about 6 hours coding and the rest (a
 
 Ah, there is one more thing that I need to do...
 
+### 00:10
+I added the last thing - updating the message status to Sent together with some fixes. I'll document the API tomorrow (it's well commented but that's not the same thing) and publish the source code on GitHub.
+
+Speaking of Git, I have the total of 131 commit out of which 29 were due to typos. I wish I had that kind of statistics for all my development (reminds me of data collected for [PSP](http://en.wikipedia.org/wiki/Personal_software_process) - I should look into that again).
