@@ -31,6 +31,7 @@ define('APP_NAME_PARAM', 'appName');
 define('APP_ID_PARAM', 'appId');
 define('APP_SECRET_PARAM', 'appSecret');
 define('LOGIN_TOKEN_PARAM', 'token');
+define('MESSAGE_ID_PARAM', 'messageId');
 define('STATUS_RETURN_PARAM', 'status');
 
 Epi::setSetting('exceptions', true);
@@ -119,6 +120,11 @@ function getAppSecretParam()
 function getTokenParam()
 {
     return getParam(LOGIN_TOKEN_PARAM);
+}
+
+function getMessageIdParam()
+{
+    return getParam(MESSAGE_ID_PARAM);
 }
 
 function tokenIsValid($token)
@@ -296,10 +302,20 @@ function getStatus()
 {
     try
     {
-        $data = array(
-            'messageId' => 'messageId',
-            'messageStatus' => 'status');
-        reportSuccess($data);
+        $messageId = getMessageIdParam();
+        if(!$messageId)
+        {
+            return;
+        }
+
+        $messageData = Database::queryMessagesPerId($messageId);
+        if(!$messageData)
+        {
+            reportFailure('Couldn\'t find the message.');
+            return;
+        }
+
+        reportSuccess($messageData);
     }
     catch(Exception $e)
     {
