@@ -34,7 +34,7 @@ class PushService
         $message->setCustomIdentifier("Message-Badge-3");
 
         // Set badge icon to "1"
-        $message->setBadge(isset($messageData['badge'] ? 0 : $messageData['badge']));
+        $message->setBadge(isset($messageData['badge']) ? 0 : $messageData['badge']);
 
         // Set a simple welcome text
         $message->setText($messageData['messageText']);
