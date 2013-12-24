@@ -6,19 +6,9 @@ register_shutdown_function('fatalErrorHandler');
 //  Setup the include path before trying to include any other source files.
 ini_set("include_path", ".:../:../epiphany/src/:../ApnsPHP/");
 
-include 'Epi.php';
-include 'Database.php';
-include 'PushService.php';
 include 'Api.php';
 
-Epi::setSetting('exceptions', true);
-Epi::init('api', 'route', 'database');
-
-Database::setupDatabase();
-PushService::setupService();
-Api::setupApi();
-
-Api::processRequests();
+Api::process();
 
 //  Handling fatal error
 function fatalErrorHandler()

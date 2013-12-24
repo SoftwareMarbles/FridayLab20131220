@@ -4,9 +4,19 @@ require_once 'ApnsPHP/Autoload.php';
 
 class PushService
 {
-    public static function SetupService()
+    static $PEM_PATH;
+    static $CERT_PASSPHRASE;
+
+    public static function SetupService($CONFIG)
     {
-        //  Nothing to do here.
+        $PEM_PATH = $CONFIG['PUSH_SERVICE_PEM_PATH'];
+        $CERT_PASSPHRASE = $CONFIG['PUSH_SERVICE_CERT_PASSPHRASE'];
+
+        if(!isset($PEM_PATH)
+            || !isset($CERT_PASSPHRASE))
+        {
+            throw new Exception('Not all push service configuration parameters have been defined.');
+        }
     }
 
     public static function push($messageData)
@@ -14,11 +24,11 @@ class PushService
         // Instanciate a new ApnsPHP_Push object
         $push = new ApnsPHP_Push(
                 ApnsPHP_Abstract::ENVIRONMENT_SANDBOX,
-                '../certs/FridayLab20131220Push.pem'
+                $PEM_PATH
         );
 
         // Set the Provider Certificate passphrase
-        $push->setProviderCertificatePassphrase('EQLcrYgYjY1FxQ3d9mpTSqpsCM7epeZlqGg7acGy2CYgfracm1WlS7b7gUX1MBrERte8gJXCUfez88fDZ2f6Tf27a0Ilt5itvdVg');
+        $push->setProviderCertificatePassphrase();
 
         // Set the Root Certificate Autority to verify the Apple remote peer
         $push->setRootCertificationAuthority('../certs/entrust_root_certification_authority.pem');

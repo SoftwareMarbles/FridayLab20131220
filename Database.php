@@ -1,9 +1,5 @@
 <?php
 
-define('TABLE_APPS_ID_COLUMN', 'id');
-define('TABLE_APPS_NAME_COLUMN', 'name');
-define('TABLE_APPS_SECRET_COLUMN', 'secret');
-
 class DatabaseMessageState
 {
     const __default = self::Waiting;
@@ -116,14 +112,24 @@ class Database
     }
 
     //  Sets up the database (creates it or updates it)
-    public static function setupDatabase()
+    public static function setupDatabase($CONFIG)
     {
-        EpiDatabase::employ(
-            'mysql',
-            'mysql',
-            'localhost',
-            'root',
-            'moot');
+        $provider = $CONFIG['SQL_PROVIDER'];
+        $database = $CONFIG['SQL_DATABASE_NAME'];
+        $host = $CONFIG['SQL_HOST'];
+        $user = $CONFIG['SQL_USER'];
+        $password = $CONFIG['SQL_PASSWORD'];
+
+        if(!isset($provider)
+            || !isset($database)
+            || !isset($host)
+            || !isset($user)
+            || !isset($password))
+        {
+            throw new Exception('Not all database configuration parameters have been defined.');
+        }
+
+        EpiDatabase::employ($provider, $database, $host, $user, $password);
 
         $createStatements = array(
 'CREATE DATABASE IF NOT EXISTS fridayLab20131220;'

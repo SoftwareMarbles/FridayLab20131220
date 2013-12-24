@@ -1,5 +1,9 @@
 <?php
 
+include 'Epi.php';
+include 'Database.php';
+include 'PushService.php';
+
 //  Constants used in the entire module.
 define('APP_NAME_PARAM', 'appName');
 define('APP_ID_PARAM', 'appId');
@@ -11,7 +15,34 @@ define('TIMESTAMP_RETURN_PARAM', 'timestamp');
 
 class Api
 {
-    public static function setupApi()
+    public static function process()
+    {
+        try
+        {
+            Epi::setSetting('exceptions', true);
+
+            $config = parse_ini_file('FridayLab20131220.ini');
+            if(!$config)
+            {
+                Api::reportFailure('Couldn\'t load or parse the configuration file.');
+                return;
+            }
+
+            Epi::init('api', 'route', 'database');
+
+            Database::setupDatabase($config);
+            PushService::setupService($config);
+            Api::setupApi();
+
+            Api::processRequests();
+        }
+        catch(Exception $e)
+        {
+            Api::reportFailure($e->getMessage());
+        }
+    }
+
+    static function setupApi()
     {
         //  heartbeat method doesn't receive any parameters.
         //  It returns the data format used by the API and the current version of the service.
@@ -40,7 +71,7 @@ class Api
         getApi()->get('/logout', array('Api', 'postNotGetError'), EpiApi::external);
     }
 
-    public static function processRequests()
+    static function processRequests()
     {
         getRoute()->run();
     }
@@ -144,12 +175,19 @@ class Api
     //  The functions implementing API.
     public static function heartbeat()
     {
-        //  Return the format and the current server time.
-        $data = array(
-            'format' => 'json',
-            'version' => '0.02');
+        try
+        {
+            //  Return the format and the current server time.
+            $data = array(
+                'format' => 'json',
+                'version' => '0.02');
 
-        Api::reportSuccess($data);
+            Api::reportSuccess($data);
+        }
+        catch(Exception $e)
+        {
+            Api::reportFailure($e->getMessage());
+        }
     }
 
     public static function login()
