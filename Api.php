@@ -16,10 +16,6 @@ class Api
         //  heartbeat method doesn't receive any parameters.
         //  It returns the data format used by the API and the current version of the service.
         getApi()->get('/', array('Api', 'heartbeat'), EpiApi::external);
-        //  registerApp API receives the name of the app to be registered.
-        //  On success it returns app ID and secret.
-        getApi()->post('/registerApp', array('Api', 'registerApp'), EpiApi::external);
-        getApi()->get('/registerApp', array('Api', 'postNotGetError'), EpiApi::external);
         //  login API receives the app ID and secret to create a new session.
         //  On success it returns the session token.
         getApi()->post('/login', array('Api', 'login'), EpiApi::external);
@@ -42,9 +38,6 @@ class Api
         //  On success it just returns status and timestamp.
         getApi()->post('/logout', array('Api', 'logout'), EpiApi::external);
         getApi()->get('/logout', array('Api', 'postNotGetError'), EpiApi::external);
-        //  unregisterApp receives an app ID.
-        //  On success it just returns status and timestamp.
-        getApi()->post('/unregisterApp', array('Api', 'unregisterApp'), EpiApi::external);
     }
 
     public static function processRequests()
@@ -157,44 +150,6 @@ class Api
             'version' => '0.02');
 
         Api::reportSuccess($data);
-    }
-
-    public static function registerApp()
-    {
-        try
-        {
-            $appName = Api::getAppNameParam();
-            if(!$appName)
-            {
-                return;
-            }
-
-            //  If the app is already register just return its data.
-            $appData = Database::queryAppsPerName($appName);
-            if($appData)
-            {
-                Api::reportSuccess($appData);
-                return;
-            }
-
-            //  Generate unique app ID and its secret.
-            $appId = uniqid('id.', true);
-            $secret = uniqid('secret.', true);
-
-            //  Add the new app to the database and return its data.
-            $data = Database::addApp($appName, $appId, $secret);
-            if(!data)
-            {
-                Api::reportFailure('Couldn\'t add app data.');
-                return;
-            }
-
-            Api::reportSuccess($data);
-        }
-        catch(Exception $e)
-        {
-            Api::reportFailure($e->getMessage());
-        }
     }
 
     public static function login()
@@ -348,6 +303,7 @@ class Api
             if($messages)
             {
                 //  Try to send all the waiting messages.
+                //  TODO: Add push-multiple method to PushService.
                 for ($i = 0; $i < count($messages); ++$i)
                 {
                     $messageData = $messages[$i];
@@ -434,18 +390,6 @@ class Api
             //  This cannot logically fail as we don't care if the client tries to log out an inexisting login.
             Database::updateLoginState($token, DatabaseLoginState::LoggedOut);
 
-            Api::reportSuccess();
-        }
-        catch(Exception $e)
-        {
-            Api::reportFailure($e->getMessage());
-        }
-    }
-
-    public static function unregisterApp()
-    {
-        try
-        {
             Api::reportSuccess();
         }
         catch(Exception $e)

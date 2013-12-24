@@ -1,6 +1,8 @@
 # Friday Lab
 Leap of faith assumption: I can make a simple push notification service in a language that I have never even seen on a db I have never used in a day.
 
+## Friday 2013-12-20
+
 ### 05:15
 Yesterday a client of mine sent me a requirement for an extension of an already existing PHP + MySQL service that is a custom push notificatin platform. The extension is essentially allowing their clients to use the push not from their iOS/Android SDK but through a RESTful API. This is of course easy and just a couple of weeks ago I made one for my own purposes in Node.js (Heroku) + CouchDb (Cloudant) but I've never seen PHP nor MySQL.
 
@@ -20,9 +22,9 @@ Let's start with setting up PHP on one of my Linux VMs and see how that goes.
 ### 06:17
 I followed the instructions [How to install LAMP](https://www.digitalocean.com/community/articles/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu) from DigitalOcean and it went smoothly on my Ubuntu 12.04. But I skipped setting up Apache. I don't want to be serving HTML pages but replying to HTTP requests so why bring Apache into the fight?
 
-Reading up on PHP I'm starting to remember stuff that I read about it at some point (and of course I heard and read a *lot* of bad stuff about it over the years). It was designed and is predominantly used as embedded server-side scripting (which brings flashbacks*) but I won't be using it like that but to build a "real" backend.
+Reading up on PHP I'm starting to remember stuff that I read about it at some point (and of course I heard and read a *lot* of bad stuff about it over the years). It was designed and is predominantly used as embedded server-side scripting (which brings flashbacks\*) but I won't be using it like that but to build a "real" backend.
 
-> *** When I started doing contract work for LockwoodTech (later ApexSQL), back in year 2000, Brian Lockwood had this product called ProcBlaster which would generate code based on table screma. It featured templates with embeddable VBScript that worked on an object model allowing you access to the database objects' metadata. When .NET and C# appeared I made a bunch of templates to produce C#, VB.NET OOP-to-DB coupling code. On another job I also used it to create a C++ COM object layer for a specific (and complex) database. It was... frustrating fun. ApexSQL retired the product some years later but still, for a couple of years I used it a lot.
+> \* When I started doing contract work for LockwoodTech (later ApexSQL), back in year 2000, Brian Lockwood had this product called ProcBlaster which would generate code based on table screma. It featured templates with embeddable VBScript that worked on an object model allowing you access to the database objects' metadata. When .NET and C# appeared I made a bunch of templates to produce C#, VB.NET OOP-to-DB coupling code. On another job I also used it to create a C++ COM object layer for a specific (and complex) database. It was... frustrating fun. ApexSQL retired the product some years later but still, for a couple of years I used it a lot.
 
 ### 06:31
 So I want to create a basic web service (and not an HTML server) with PHP and of course I google that (btw, I also use [DuckDuckGo](https://duckduckgo.com) search engine especially when I don't want Google changing my results based on my temporary location and stuff like that). So the first thing that comes up is [Create a Basic Web Service Using PHP, MySQL, XML and JSON](http://davidwalsh.name/web-service-php-mysql-xml-json) by David Walsh. Not sure why I need XML but sounds like a match so I'll give it a try.
@@ -92,7 +94,9 @@ The database creation and access is finally working - now it's time for the big 
 ### 21:34
 The rows are getting inserted on API calls... but my wife just came home and it's time for some [Cola de Mono](http://en.wikipedia.org/wiki/Cola_de_mono). Today, according to my trustworthy RescuteTime, I've spent 11 hours and 40 minutes on my Mac, out of which working 11 hours and 16 minutes were productive. The two applications where I've spent most time were Terminal with 4 hours and 36 minutes and Sublime Text 2 with 3 hours and 3 minutes. From this I would estimate that the actual coding time was less than 4 hours as I did most of my coding in Sublime Text 2 and just some minor tweaks in Terminal.
 
-### 05:12 - The next day
+## Saturday, 2013-12-21
+
+### 05:12
 Looking at the work I did yesterday, I made several choices that slowed me down considerably:
 
  1. I chose not to install PHP on my Mac. I hate installing software for software's sake and PHP, for now at least, is just an experiment for me.
@@ -104,10 +108,10 @@ The rest like how to properly structure a PHP file were just growing pains - stu
 
 At the end, I failed. There is no push notification service, just a mere skeleton of the same. I'll wrap it up tomorrow as in an hour or so I'm climbing [Pochoco](http://es.wikipedia.org/wiki/Cerro_Pochoco) and then doing a traverse toward the barbeque part of the [park](http://es.wikipedia.org/wiki/El_Arrayán) where some friends will be waiting.
 
-Sunday, 2013-12-22
+## Sunday, 2013-12-22
 
 ### 06:52
-As I mentioned the other day, today I'm going to try to wrap up my PHP + MySQL push notification web service. I'll also allow myself a bit more time and do a production-quality job on module organization and abstraction. I'll be abstracting data access and the actual push notification mechanism.
+As I [mentioned](http://www.softwaremarbles.com/people/ivan-erceg/blog/2013/12/21/friday-lab) the other day, today I'm going to try to wrap up my PHP + MySQL push notification web service. I'll also allow myself a bit more time and do a production-quality job on module organization and abstraction. I'll be abstracting data access and the actual push notification mechanism.
 
 ### 07:29
 The insertions and querying of apps table are now working. All the database code has been abstracted into a separate Database class - nothing sophisticated, just a bunch of static functions being invoked from the main module. But it will allow easy replacement if needed be.
@@ -140,31 +144,33 @@ After some testing and failing I got push working but of course there is no app 
 After the domestic peace has returned (kids are asleep) I'm wrapping this up:
 
  1. New iOS app.
- 2. In `didFinishLaunchingWithOptions` I add:
-
-    //  Every time we launch we have to register the device for remote notifications.
-    [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert];
-
- 3. I also add the following to the application delegate:
-
-    - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-        NSLog(@"Device token is %@", deviceToken);
-    }
-
-    - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-        NSLog(@"Push notification registration failed: %@", error);
-    }
-
+ 2. Add push notification code code to app's delegate class\*.
  4. Run the app (but not in the simulator!)
  5. Grab the device token from the debugger output and clean it up for sending to API.
  6. Close the app on your device.
- 7. Issue a new API call:
-
-    curl --data '{"type":0,"recepient":"<your token goes here>","messageText":"test"}' http://127.0.0.1/send?token=<your login token goes here>
-
+ 7. Issue a new API call to send a message.
  8. Receive the message!
 
 It's a wrap!
+
+\* To adapt app's delegate, in `didFinishLaunchingWithOptions` add:
+
+```
+//  Every time we launch we have to register the device for remote notifications.
+[application registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert];
+```
+
+Also add the following code to the application delegate:
+
+```
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    NSLog(@"Device token is %@", deviceToken);
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    NSLog(@"Push notification registration failed: %@", error);
+}
+```
 
 ### 22:54
 Let's see about some statistics. RescueTime reports that I've been on my Mac for 6 hours and 7 minutes today out of which 6 hours and 2 minutes (!) were spent productively. Breaking it down, I spent 02:45 in Sublime Text 2, 01:41 in Terminal and the 3rd biggest application I used was... [Stack Overflow](http://stackoverflow.com) where I spent 11 minutes.
