@@ -28,7 +28,7 @@ Assuming your web server is correctly setup to serve PHP pages, then do the foll
  4. All replies by the service are in JSON format and contain `status` and `timestamp` fields. Additionally, if the `status` is `fail`, an `error` field is also present.
 
 ### Usage
-Assuming a service is running at [fridaylab.net](http://fridaylab.net)), you can run the following:
+Assuming a service is running at [fridaylab.net](http://fridaylab.net), you can do the following:
  1. Get a heartbeat: `curl https://fridaylab.net/20131220`.
  2. Login: `curl --data '' https://fridaylab.net/20131220/login?appId=<the assigned app ID>\&secret=<the assigned app secret>`. This will return a session token. The session token is valid for 24 hours or until logout method is invoked.
  3. Send a message: `curl --data '{"type":0,"recepient":"<the device token as assigned by iOS>","messageText":"<the text of the message>"}'   https://fridaylab.net/20131220/send?token=<the session token>`. This will return the complete message row (as JSON) from messages table including the message ID.
