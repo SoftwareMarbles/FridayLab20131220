@@ -1,0 +1,1358 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"Database",
+				"DatabaseMessageState"
+			],
+			[
+				"push",
+				"pushError"
+			],
+			[
+				"message",
+				"messageData"
+			],
+			[
+				"messa",
+				"messageData"
+			],
+			[
+				"login",
+				"loginData"
+			],
+			[
+				"ex",
+				"expiresAt"
+			],
+			[
+				"app",
+				"appId"
+			],
+			[
+				"TOKEN",
+				"LOGIN_TOKEN_PARAM"
+			],
+			[
+				"TABLE",
+				"TABLE_APPS_ID_COLUMN"
+			],
+			[
+				"APPN",
+				"APP_NAME_PARAM"
+			],
+			[
+				"table",
+				"tableApps"
+			],
+			[
+				"json",
+				"json_encode"
+			],
+			[
+				"js",
+				"json_encode"
+			],
+			[
+				"twitter",
+				"twitter_user"
+			],
+			[
+				"sof",
+				"softwaremarbles"
+			],
+			[
+				"index",
+				"indexUrl"
+			],
+			[
+				"collect",
+				"collectData"
+			],
+			[
+				"curren",
+				"currentDesign"
+			],
+			[
+				"curre",
+				"currentDesign"
+			],
+			[
+				"objects",
+				"objectsEqual"
+			],
+			[
+				"com",
+				"compareObjects"
+			],
+			[
+				"prope",
+				"propertiesCompared"
+			],
+			[
+				"lhs",
+				"lhsProperty"
+			],
+			[
+				"prp",
+				"propertyName"
+			],
+			[
+				"cur",
+				"currentView"
+			],
+			[
+				"upg",
+				"upgradeDesign"
+			],
+			[
+				"upd",
+				"upgradeDesign"
+			],
+			[
+				"cure",
+				"currentDesign"
+			],
+			[
+				"up",
+				"upgradeView"
+			],
+			[
+				"conn",
+				"connection"
+			],
+			[
+				"mar",
+				"markdownText"
+			],
+			[
+				"con",
+				"console"
+			],
+			[
+				"repliat",
+				"replicationTargetConnection"
+			],
+			[
+				"conne",
+				"connection"
+			],
+			[
+				"phan",
+				"phantomjs"
+			],
+			[
+				"authentica",
+				"authentication"
+			],
+			[
+				"authen",
+				"authentication"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/Users/ierceg/repos/friday-sprint-20131220/DevLog.md",
+			"settings":
+			{
+				"buffer_size": 16715,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "d131bc0c41ac3fbead011daaff3e156bcc3958a2aec52f296861efc7fd6421e4",
+			"settings":
+			{
+				"buffer_size": 64,
+				"line_ending": "Unix",
+				"name": "d131bc0c41ac3fbead011daaff3e156bcc3958a2aec52f2968"
+			}
+		},
+		{
+			"file": "/Users/ierceg/repos/friday-sprint-20131220/public/index.php",
+			"settings":
+			{
+				"buffer_size": 943,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/ierceg/repos/friday-sprint-20131220/Api.php",
+			"settings":
+			{
+				"buffer_size": 10965,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "curl --data '{\"type\":0,\"recepient\":\"d131bc0c41ac3fbead011daaff3e156bcc3958a2aec52f296861efc7fd6421e4\",\"messageText\":\"te amo\"}' http://127.0.0.1/send?token=token.52b6e3329dc1b2.57519586\n\n\"messagesWaiting\":\"8\",\"messagesSent\":\"3\",\"status\":\"success\",\"timestamp\":\"2013-12-23 13:00:13.590169\"}\n\n{\"messageId\":\"message.52b85a352231a7.28333615\",\"status\":\"success\",\"timestamp\":\"2013-12-23 12:43:53.365849\"}\n\n{\"id\":\"message.52b85a352231a7.28333615\",\"token\":\"token.52b6e3329dc1b2.57519586\",\"state\":\"1\",\"type\":\"0\",\"recepient\":\"d131bc0c41ac3fbead011daaff3e156bcc3958a2aec52f296861efc7fd6421e4\",\"messageText\":\"te amo\",\"status\":\"success\",\"timestamp\":\"2013-12-23 12:48:43.060116\"}\n\n´´",
+			"settings":
+			{
+				"buffer_size": 667,
+				"line_ending": "Unix",
+				"name": "curl --data '{\"type\":0,\"recepient\":\"d131bc0c41ac3f"
+			}
+		},
+		{
+			"file": "/Users/ierceg/repos/friday-sprint-20131220/PushService.php",
+			"settings":
+			{
+				"buffer_size": 1610,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/ierceg/repos/friday-sprint-20131220/Database.php",
+			"settings":
+			{
+				"buffer_size": 5094,
+				"line_ending": "Unix",
+				"name": "<$php"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 47.0,
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"",
+				"About"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 139.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/ierceg/repos/friday-sprint-20131220/.gitmodules",
+		"/Users/ierceg/repos/friday-sprint-20131220/epiphany/src/EpiDatabase.php",
+		"/Users/ierceg/repos/friday-sprint-20131220/epiphany/src/EpiSession_Memcached.php",
+		"/Users/ierceg/repos/friday-sprint-20131220/epiphany/src/Epi.php",
+		"/Users/ierceg/repos/friday-sprint-20131220/index.php",
+		"/Users/ierceg/repos/friday-sprint-20131220/server.php",
+		"/Users/ierceg/Documents/friday-sprint-20131220/sftp-config.json",
+		"/Users/ierceg/Documents/documents.sublime-project",
+		"/Users/ierceg/Library/Application Support/Sublime Text 2/Packages/FTPSync/FTPSync.sublime-settings",
+		"/Users/ierceg/repos/ierceg.github.com/source/projects/index.markdown",
+		"/Users/ierceg/repos/ierceg.github.com/public/projects/index.html",
+		"/Users/ierceg/repos/ierceg.github.com/_config.yml",
+		"/Users/ierceg/repos/ierceg.github.com/config.ru",
+		"/Users/ierceg/repos/ierceg.github.com/config.rb",
+		"/Users/ierceg/repos/ierceg.github.com/sass/custom/_fonts.scss",
+		"/Users/ierceg/repos/ierceg.github.com/sass/custom/_layout.scss",
+		"/Users/ierceg/repos/ierceg.github.com/source/about.markdown",
+		"/Users/ierceg/repos/octopress/.themes/classic/source/_includes/custom/asides/about.html",
+		"/Users/ierceg/repos/ierceg.github.com/source/_includes/header.html",
+		"/Users/ierceg/repos/ierceg.github.com/sass/base/_typography.scss",
+		"/Users/ierceg/repos/octopress/sass/base/_typography.scss",
+		"/Users/ierceg/repos/ierceg.github.com/source/_includes/banner.html",
+		"/Users/ierceg/repos/octopress/_config.yml",
+		"/Users/ierceg/repos/octopress/source/_includes/navigation.html",
+		"/Users/ierceg/repos/octopress/source/_includes/custom/navigation.html",
+		"/Users/ierceg/repos/site_source/source/_includes/navigation.html",
+		"/Users/ierceg/repos/site_source/source/_includes/custom/navigation.html",
+		"/Users/ierceg/repos/site_source/source/_includes/custom/footer.html",
+		"/Users/ierceg/repos/octopress/sass/custom/_fonts.scss",
+		"/Users/ierceg/repos/octopress/Rakefile",
+		"/Users/ierceg/repos/site_source/sass/custom/_styles.scss",
+		"/Users/ierceg/repos/site_source/sass/screen.scss",
+		"/Users/ierceg/repos/site_source/_config.yml",
+		"/Users/ierceg/repos/site_source/source/_includes/custom/header.html",
+		"/Users/ierceg/repos/site_source/.themes/classic/source/_includes/post/sharing.html",
+		"/Users/ierceg/repos/site_source/.editorconfig",
+		"/Users/ierceg/repos/site_source/sass/custom/_layout.scss",
+		"/Users/ierceg/repos/site_source/source/about.markdown",
+		"/Users/ierceg/repos/site_source/sass/custom/_fonts.scss",
+		"/Users/ierceg/repos/site_source/sass/custom/_colors.scss",
+		"/Users/ierceg/repos/site_source/sass/base/_layout.scss",
+		"/Users/ierceg/repos/site_source/.themes/classic/sass/screen.scss",
+		"/Users/ierceg/Dropbox/2013 Shutdown/Shutdown.txt",
+		"/Users/ierceg/repos/site_source/.themes/classic/sass/custom/_colors.scss",
+		"/Users/ierceg/repos/site_source/source/index.markdown",
+		"/Users/ierceg/repos/site_source/source/projects/index.markdown",
+		"/Users/ierceg/Dropbox/SMarbles/Docs/Specs/Nido2.txt",
+		"/Users/ierceg/Dev/Source/Test3/Test3/SMNidoLayoutEngine.h",
+		"/Users/ierceg/Dev/Source/Test3/Test3/SMNidoLayoutEngine.m",
+		"/Users/ierceg/Temp/nidoing.m",
+		"/Users/ierceg/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/Users/ierceg/repos/site_source/.themes/classic/source/_layouts/category_index.html",
+		"/Users/ierceg/repos/site_source/source/_posts/2013-06-01-the-pantheon-of-ideality-in-software-development.markdown",
+		"/Users/ierceg/Dropbox/SMarbles/Docs/Specs/Nido.txt",
+		"/Users/ierceg/repos/nido/nido/en.lproj/NidoNotifications.m",
+		"/Users/ierceg/Library/Application Support/iPhone Simulator/6.1/Applications/6F416BF6-7C4C-46CD-A9D4-F8F10974305C/Library/Preferences/com.apple.PeoplePicker.plist",
+		"/Users/ierceg/Library/Application Support/iPhone Simulator/6.1/Applications/6F416BF6-7C4C-46CD-A9D4-F8F10974305C/Library/Preferences/com.softwaremarbles.nido.plist",
+		"/Users/ierceg/Temp/5873F95C-B64F-46B2-9491-CE312B02F3F9.mov",
+		"/Users/ierceg/repos/site_source/source/_posts/2013-05-25-evolving-code.markdown",
+		"/Users/ierceg/repos/site_source/source/_posts/2013-06-01-no-silver-bullet.markdown",
+		"/Users/ierceg/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
+		"/Users/ierceg/repos/site_source/source/_posts/2013-05-25-product-development-as-drilling.markdown",
+		"/Users/ierceg/repos/site_source/source/_posts/2013-05-26-elastic-development.markdown",
+		"/Users/ierceg/repos/site_source/source/_posts/2013-05-26-elastic-software-development.markdown",
+		"/Users/ierceg/repos/site_source/source/_posts/2013-04-16-product-development-as-a-sandwich.markdown",
+		"/Users/ierceg/repos/site_source/source/_posts/2013-03-23-publicly-wrong.markdown",
+		"/Users/ierceg/repos/site_source/source/_posts/2013-04-16-what-makes-a-sandwich.markdown",
+		"/Users/ierceg/repos/site_source/README.markdown",
+		"/Users/ierceg/repos/site_source/source/_posts/2006-06-23-output-to-console-from-net-gui-apps.html",
+		"/Users/ierceg/repos/site_source/source/_posts/2006-06-24-recoverying-data-from-large-dbs.html",
+		"/Users/ierceg/repos/site_source/source/_posts/2006-06-24-sql-server-storage-engine-blog.html",
+		"/Users/ierceg/repos/site_source/source/_posts/2006-06-30-new-info-on-upcoming-version-of.html",
+		"/Users/ierceg/repos/site_source/source/_posts/2006-06-30-power-of-marginal-by-paul-graham.html",
+		"/Users/ierceg/repos/site_source/source/_posts/2006-06-30-unix-command-line-utilities-for.html",
+		"/Users/ierceg/repos/site_source/source/_posts/2006-07-01-mounting-cd-rom-images-in-windows-xp.html",
+		"/Users/ierceg/repos/site_source/source/_posts/2006-07-04-declaration-of-independence.html",
+		"/Users/ierceg/repos/site_source/source/_posts/2006-07-04-hitting-maximum-simultaneously-open.html",
+		"/Users/ierceg/repos/site_source/source/_posts/2013-03-20-powered-by-octopress.markdown",
+		"/Users/ierceg/repos/site_source/source/_posts/2013-04-07-new-site.markdown",
+		"/Users/ierceg/repos/site_source/Rakefile",
+		"/Users/ierceg/repos/site_source/.gitignore",
+		"/Users/ierceg/tools/_posts/2006-06-23-output-to-console-from-net-gui-apps.html",
+		"/Users/ierceg/tools/_drafts/2006-07-09-io-stream-classes-for-windows-handles.html",
+		"/Users/ierceg/repos/octopress/source/_posts/2013-03-23-publicly-wrong.markdown",
+		"/Users/ierceg/repos/Poncho/README.md",
+		"/Users/ierceg/repos/octopress/source/_posts/2013-03-22-one-service-to-rule-them-all.markdown",
+		"/Users/ierceg/repos/octopress/source/_includes/head.html",
+		"/Users/ierceg/repos/octopress/plugins/sitemap_generator.rb",
+		"/Users/ierceg/repos/octopress/plugins/category_generator.rb",
+		"/Users/ierceg/repos/octopress/source/_posts/2013-03-21-creating-a-non-default-blog-page-in-octopress.markdown",
+		"/Users/ierceg/repos/octopress/source/_includes/archive_post.html",
+		"/Users/ierceg/repos/octopress/plugins/pagination.rb",
+		"/Users/ierceg/repos/octopress/source/blog.html",
+		"/Users/ierceg/repos/octopress/source/_posts/2013-03-20-powered-by-octopress.markdown",
+		"/Users/ierceg/repos/octopress/source/_posts/2013-03-21-fixing-octopress-twitter-feed.markdown",
+		"/Users/ierceg/repos/octopress/source/about.markdown",
+		"/Users/ierceg/repos/octopress/source/_includes/custom/footer.html",
+		"/Users/ierceg/repos/octopress/source/projects/index.markdown",
+		"/Users/ierceg/repos/octopress/source/index.markdown",
+		"/Users/ierceg/repos/ierceg.github.com/stylesheets/styles.css",
+		"/Users/ierceg/repos/ierceg.github.com/stylesheets/normalize.css",
+		"/Users/ierceg/repos/ierceg.github.com/stylesheets/pygment_trac.css",
+		"/Users/ierceg/repos/ierceg.github.com/stylesheets/ie.css",
+		"/Users/ierceg/repos/octopress/sass/custom/_colors.scss",
+		"/Users/ierceg/tools/import.rb",
+		"/Users/ierceg/repos/octopress/source/_posts/2006-06-30-power-of-marginal-by-paul-graham.html",
+		"/Users/ierceg/Downloads/blog-04-07-2013.xml",
+		"/Users/ierceg/repos/octopress/source/_includes/article.html",
+		"/Users/ierceg/repos/octopress/.themes/darkstripes/sass/custom/_colors.scss",
+		"/Users/ierceg/repos/octopress/public/blog/2013/03/20/powered-by-octopress/index.html",
+		"/Users/ierceg/repos/octopress/public/blog.html",
+		"/Users/ierceg/repos/octopress/source/_includes/header.html",
+		"/Users/ierceg/repos/octopress/source/_includes/custom/header.html",
+		"/Users/ierceg/repos/octopress/_deploy/javascripts/octopress.js",
+		"/Users/ierceg/repos/octopress/source/_layouts/page.html",
+		"/Users/ierceg/repos/octopress/.themes/classic/source/_layouts/page.html",
+		"/Users/ierceg/repos/octopress/CHANGELOG.markdown",
+		"/Users/ierceg/repos/ierceg.github.com/params.json",
+		"/Users/ierceg/repos/octopress/sass/screen.scss",
+		"/Users/ierceg/repos/octopress/sass/base/_layout.scss",
+		"/Users/ierceg/repos/octopress/sass/_partials.scss",
+		"/Users/ierceg/repos/octopress/sass/_base.scss",
+		"/Users/ierceg/repos/octopress/source/stylesheets/styles.css",
+		"/Users/ierceg/repos/octopress/source/stylesheets/screen.css",
+		"/Users/ierceg/repos/octopress/source/atom.xml",
+		"/Users/ierceg/repos/octopress/public/blog/archives/index.html",
+		"/Users/ierceg/repos/octopress/public/index.html",
+		"/Users/ierceg/site.mdown"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"/Users/ierceg/friday-sprint-20131220",
+			"/Users/ierceg/marble",
+			"/Users/ierceg/marble/bin",
+			"/Users/ierceg/marble",
+			"/Users/ierceg/marble/bin",
+			"/Users/ierceg/marble",
+			"/Users/ierceg/marble/bin",
+			"/Users/ierceg/marble",
+			"/Users/ierceg/marble/bin",
+			"/Users/ierceg/marble",
+			"/Users/ierceg/marble/bin",
+			"/Users/ierceg/marble",
+			"/Users/ierceg/marble/bin"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"statistics",
+			"token",
+			"sendMessage",
+			"think",
+			"message",
+			"appName",
+			"appId",
+			"appName",
+			"queryStats",
+			"queryStatsPerAppId",
+			"appName",
+			"queryStatsPerAppName",
+			"appName",
+			"apps",
+			"appId",
+			"apps",
+			"statistics",
+			"messageData",
+			"updateMessageState",
+			"token",
+			"messageId",
+			"token",
+			"login",
+			"update",
+			"11",
+			"d131bc0c41ac3fbead011daaff3e156bcc3958a2aec52f296861efc7fd6421e4",
+			"tokenIsValid",
+			"FridayLab20131220Push",
+			"server_certificates_bundle_sandbox",
+			"test",
+			"datetime",
+			"atetime",
+			"DateTime",
+			"getTokenParam",
+			"getAppSecretParam",
+			"getAppIdParam",
+			"getAppNameParam",
+			"STATUS_RETURN_PARAM",
+			"status",
+			".u",
+			"getParam",
+			"reportSuccess",
+			"reportFailure",
+			"reportSuccess",
+			"getMessageIdParam",
+			"registerApp",
+			"heartbeat",
+			"getRougetApite",
+			"getRoute",
+			"getApi",
+			"getRoute",
+			"STATUS_RETURN_PARAM",
+			"APN",
+			"ApnsPHP",
+			"Instanciate",
+			"test",
+			"data",
+			"queryMessagesPerId",
+			"query",
+			"queryMessagesPerId",
+			"queryMess",
+			"getMessageIdParam",
+			"LOGIN_TOKEN_PARAM",
+			"MESSAGE_ID_PARAM",
+			"LOGIN_TOKEN_PARAM",
+			"getTokenParam",
+			"messageText",
+			"message",
+			"messageText",
+			"STATUS_RETURN_PARAM",
+			"LOGIN_TOKEN_PARAM",
+			"{",
+			" \\{\\n",
+			") \\{\\n",
+			"data",
+			"{",
+			"login",
+			"Waiting",
+			"appId",
+			"id",
+			"app",
+			"unique",
+			"appName",
+			"name",
+			"appId",
+			"text",
+			"message",
+			"text",
+			"recipient",
+			"message",
+			"2000",
+			"name",
+			"apps",
+			"app",
+			"inser",
+			"token",
+			"messageId",
+			"token",
+			"logins",
+			"CREATE",
+			"Database::LoginState",
+			"::",
+			"LoginState",
+			"LoggedIn",
+			"loggedIn",
+			"LoggedIn",
+			"updateLoginsState",
+			"updateLoginState",
+			"DROP",
+			"status",
+			"loggedIn",
+			"Waiting",
+			"payload",
+			"rawPayload",
+			"json_decode",
+			"delete",
+			"deleteLogin",
+			"updateLoginsState",
+			"deleteLogin",
+			"set",
+			"DELETE",
+			"deleteLogin",
+			"loggedIn",
+			"appId",
+			"new DateA",
+			"queryLoginsPerToken",
+			"uniqid",
+			"appId"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"Api::getAppNameParam",
+			"Api::reportSuccess",
+			"recepient",
+			"'",
+			"´",
+			"currentDesign",
+			"",
+			"{",
+			"authentication.ensure",
+			"localStrategy"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 5,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/Users/ierceg/repos/friday-sprint-20131220/DevLog.md",
+					"settings":
+					{
+						"buffer_size": 16715,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								13369,
+								13369
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Markdown/Markdown.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2688.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"settings":
+					{
+						"buffer_size": 64,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								64
+							]
+						],
+						"settings":
+						{
+							"auto_name": "d131bc0c41ac3fbead011daaff3e156bcc3958a2aec52f2968",
+							"incomplete_sync": null,
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/Users/ierceg/repos/friday-sprint-20131220/public/index.php",
+					"settings":
+					{
+						"buffer_size": 943,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								675,
+								675
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/Users/ierceg/repos/friday-sprint-20131220/Api.php",
+					"settings":
+					{
+						"buffer_size": 10965,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6,
+								6
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"settings":
+					{
+						"buffer_size": 667,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								667,
+								667
+							]
+						],
+						"settings":
+						{
+							"auto_name": "curl --data '{\"type\":0,\"recepient\":\"d131bc0c41ac3f",
+							"incomplete_sync": null,
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/Users/ierceg/repos/friday-sprint-20131220/PushService.php",
+					"settings":
+					{
+						"buffer_size": 1610,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								286,
+								286
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "/Users/ierceg/repos/friday-sprint-20131220/Database.php",
+					"settings":
+					{
+						"buffer_size": 5094,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4743,
+								4743
+							]
+						],
+						"settings":
+						{
+							"auto_name": "<$php",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1636.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 34.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.sftp":
+	{
+		"height": 0.0
+	},
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"epidata",
+				"epiphany/src/EpiDatabase.php"
+			],
+			[
+				"one",
+				"epiphany/src/EpiSession_Memcached.php"
+			],
+			[
+				"about",
+				".themes/classic/source/_includes/custom/asides/about.html"
+			],
+			[
+				"_typo",
+				"sass/base/_typography.scss"
+			],
+			[
+				"_font",
+				"sass/custom/_fonts.scss"
+			],
+			[
+				"navigation.",
+				"source/_includes/custom/navigation.html"
+			],
+			[
+				"navit",
+				"source/_includes/navigation.html"
+			],
+			[
+				"rakef",
+				"Rakefile"
+			],
+			[
+				"config",
+				"_config.yml"
+			],
+			[
+				"styles",
+				"sass/custom/_styles.scss"
+			],
+			[
+				"_lay",
+				"sass/custom/_layout.scss"
+			],
+			[
+				"header",
+				"source/_includes/custom/header.html"
+			],
+			[
+				"sass/base/",
+				"sass/base/_layout.scss"
+			],
+			[
+				"custom",
+				"sass/custom/_layout.scss"
+			],
+			[
+				"_layout",
+				"sass/custom/_layout.scss"
+			],
+			[
+				"_colors",
+				"sass/custom/_colors.scss"
+			],
+			[
+				"_styles",
+				"sass/custom/_styles.scss"
+			],
+			[
+				"navigation",
+				"source/_includes/custom/navigation.html"
+			],
+			[
+				"layout",
+				"sass/custom/_layout.scss"
+			],
+			[
+				"css",
+				".themes/classic/sass/screen.scss"
+			],
+			[
+				"posts",
+				".themes/classic/source/_includes/post/sharing.html"
+			],
+			[
+				"",
+				".editorconfig"
+			],
+			[
+				"index",
+				"source/index.markdown"
+			],
+			[
+				"project",
+				"source/projects/index.markdown"
+			],
+			[
+				"color",
+				".themes/classic/source/_layouts/category_index.html"
+			],
+			[
+				"panth",
+				"source/_posts/2013-06-01-the-pantheon-of-ideality-in-software-development.markdown"
+			],
+			[
+				"_color",
+				"sass/custom/_colors.scss"
+			],
+			[
+				"colors",
+				"sass/custom/_colors.scss"
+			],
+			[
+				"_c",
+				"_config.yml"
+			],
+			[
+				"conf",
+				"_config.yml"
+			],
+			[
+				"projec",
+				"source/projects/index.markdown"
+			],
+			[
+				"pant",
+				"source/_posts/2013-06-01-the-pantheon-of-ideality-in-software-development.markdown"
+			],
+			[
+				"panthe",
+				"source/_posts/2013-06-01-the-pantheon-of-ideality-in-software-development.markdown"
+			],
+			[
+				"2013-05",
+				"source/_posts/2013-05-25-evolving-code.markdown"
+			],
+			[
+				"no-sil",
+				"source/_posts/2013-06-01-no-silver-bullet.markdown"
+			],
+			[
+				"elastic",
+				"source/_posts/2013-05-26-elastic-software-development.markdown"
+			],
+			[
+				"elastici",
+				"source/_posts/2013-05-26-elasticity-cuts-both-ways.markdown"
+			],
+			[
+				"elasti",
+				"source/_posts/2013-05-26-elasticity-cuts-both-ways.markdown"
+			],
+			[
+				"drill",
+				"source/_posts/2013-05-25-product-development-as-drilling.markdown"
+			],
+			[
+				"evov",
+				"source/_posts/2013-05-25-evolving-code.markdown"
+			],
+			[
+				"sandw",
+				"source/_posts/2013-04-16-product-development-as-a-sandwich.markdown"
+			],
+			[
+				"drilling",
+				"source/_posts/2013-05-25-product-development-as-drilling.markdown"
+			],
+			[
+				"product",
+				"source/_posts/2013-05-25-product-development-as-drilling.markdown"
+			],
+			[
+				"yml",
+				"_config.yml"
+			],
+			[
+				"2013",
+				"source/_posts/2013-03-23-publicly-wrong.markdown"
+			],
+			[
+				"whatma",
+				"source/_posts/2013-04-16-what-makes-a-sandwich.markdown"
+			],
+			[
+				"readme",
+				"README.markdown"
+			],
+			[
+				".git",
+				".gitignore"
+			],
+			[
+				"rake",
+				"Rakefile"
+			],
+			[
+				"powered",
+				"source/_posts/2013-03-20-powered-by-octopress.markdown"
+			],
+			[
+				"newsite",
+				"source/_posts/2013-04-07-new-site.markdown"
+			],
+			[
+				"new",
+				"source/_posts/2013-04-07-new-site.markdown"
+			],
+			[
+				"pub",
+				"source/_posts/2013-03-23-publicly-wrong.markdown"
+			],
+			[
+				"oneser",
+				"source/_posts/2013-03-22-one-service-to-rule-them-all.markdown"
+			],
+			[
+				"_head.ht",
+				"source/_includes/head.html"
+			],
+			[
+				"sitem",
+				"plugins/sitemap_generator.rb"
+			],
+			[
+				"category",
+				"plugins/category_generator.rb"
+			],
+			[
+				"pagina",
+				"plugins/pagination.rb"
+			],
+			[
+				"naviga",
+				"source/_includes/custom/navigation.html"
+			],
+			[
+				"non-def",
+				"source/_posts/2013-03-21-creating-a-non-default-blog-page-in-octopress.markdown"
+			],
+			[
+				"pagination",
+				"plugins/pagination.rb"
+			],
+			[
+				"archiv",
+				"source/_includes/archive_post.html"
+			],
+			[
+				"paginator",
+				"plugins/pagination.rb"
+			],
+			[
+				"blog",
+				"source/blog.html"
+			],
+			[
+				"_conf",
+				"_config.yml"
+			],
+			[
+				"twitter-fe",
+				"source/_posts/2013-03-21-fixing-octopress-twitter-feed.markdown"
+			],
+			[
+				"footer",
+				"source/_includes/custom/footer.html"
+			],
+			[
+				"projects",
+				"source/projects/index.markdown"
+			],
+			[
+				"inde",
+				"source/index.markdown"
+			],
+			[
+				"octopre",
+				"_deploy/javascripts/octopress.js"
+			],
+			[
+				"navig",
+				"source/_includes/custom/navigation.html"
+			],
+			[
+				"powere",
+				"source/_posts/2013-03-20-powered-by-octopress.markdown"
+			],
+			[
+				"_config",
+				"_config.yml"
+			],
+			[
+				"proje",
+				"source/projects/index.markdown"
+			],
+			[
+				"abo",
+				"source/about.markdown"
+			],
+			[
+				"navigato",
+				"source/_includes/custom/navigation.html"
+			],
+			[
+				"_page",
+				"source/_layouts/page.html"
+			],
+			[
+				"page.ht",
+				".themes/classic/source/_layouts/page.html"
+			],
+			[
+				"_confi",
+				"_config.yml"
+			],
+			[
+				"db",
+				"bin/dbDesign.js"
+			],
+			[
+				"database",
+				"bin/database.js"
+			],
+			[
+				".env",
+				".env"
+			],
+			[
+				"cons",
+				"bin/consts.js"
+			],
+			[
+				"d",
+				"bin/dbDesign.js"
+			],
+			[
+				"app",
+				"app.js"
+			],
+			[
+				"const",
+				"bin/consts.js"
+			],
+			[
+				"index.css",
+				"public/css/index.css"
+			],
+			[
+				"style.css",
+				"public/css/style.css"
+			],
+			[
+				"index.sty",
+				"views/css/index.styl"
+			],
+			[
+				"index.cs",
+				"public/css/index.css"
+			],
+			[
+				"style.",
+				"public/css/style.css"
+			],
+			[
+				"head",
+				"views/inc/header.jade"
+			],
+			[
+				"lay",
+				"views/layout.jade"
+			],
+			[
+				"index.",
+				"views/index.jade"
+			],
+			[
+				"login",
+				"bin/login.js"
+			],
+			[
+				"consts",
+				"bin/consts.js"
+			],
+			[
+				"logi",
+				"bin/login.js"
+			],
+			[
+				"log",
+				"views/login.jade"
+			],
+			[
+				"env",
+				".env"
+			],
+			[
+				"dbd",
+				"bin/dbDesign.js"
+			],
+			[
+				"index.ja",
+				"views/index.jade"
+			],
+			[
+				"couch",
+				"node_modules/felix-couchdb/lib/couchdb.js"
+			],
+			[
+				"databa",
+				"bin/database.js"
+			],
+			[
+				"node-couch",
+				"node_modules/felix-couchdb/lib/couchdb.js"
+			],
+			[
+				"data",
+				"bin/database.js"
+			],
+			[
+				"dbde",
+				"bin/dbDesign.js"
+			],
+			[
+				"pack",
+				"package.json"
+			],
+			[
+				"index.jad",
+				"views/index.jade"
+			],
+			[
+				"index.j",
+				"bin/index.js"
+			],
+			[
+				"mig",
+				"bin/utils/migrate.js"
+			],
+			[
+				"dataa",
+				"bin/database.js"
+			],
+			[
+				"migra",
+				"bin/utils/migrate.js"
+			],
+			[
+				"migr",
+				"bin/utils/migrate.js"
+			],
+			[
+				"datab",
+				"bin/database.js"
+			],
+			[
+				"packa",
+				"package.json"
+			],
+			[
+				".e",
+				".env"
+			],
+			[
+				"index.js",
+				"bin/index.js"
+			],
+			[
+				"couchd",
+				"bin/forks/node-couchdb/lib/couchdb.js"
+			],
+			[
+				"repl",
+				"bin/replication.js"
+			],
+			[
+				"pars",
+				"bin/parseuri.js"
+			],
+			[
+				"scr",
+				"bin/scrapePage.js"
+			],
+			[
+				"scra",
+				"bin/scrapePage.js"
+			],
+			[
+				"par",
+				"bin/parseuri.js"
+			],
+			[
+				".",
+				".env"
+			],
+			[
+				"sc",
+				"views/inc/scripts.jade"
+			],
+			[
+				"hea",
+				"views/inc/header.jade"
+			],
+			[
+				"la",
+				"views/layout.jade"
+			],
+			[
+				"ind",
+				"views/index.jade"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 266.0,
+	"status_bar_visible": true
+}

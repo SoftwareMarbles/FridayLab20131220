@@ -103,13 +103,16 @@ class Database
 
     public static function queryStatsPerAppId($appId)
     {
-        return getDatabase()->one(
-            '
-        SELECT
-            (SELECT COUNT(*) AS messageCount FROM messages WHERE state = 0 AND token IN (SELECT token FROM logins WHERE appId = :appId)) AS messagesWaiting,
-            (SELECT COUNT(*) AS messageCount FROM messages WHERE state = 1 AND token IN (SELECT token FROM logins WHERE appId = :appId)) AS messagesSent
-            ',
+        return getDatabase()->one('SELECT
+                (SELECT COUNT(*) AS messageCount FROM messages WHERE state = 0 AND token IN (SELECT token FROM logins WHERE appId = :appId)) AS messagesWaiting,
+                (SELECT COUNT(*) AS messageCount FROM messages WHERE state = 1 AND token IN (SELECT token FROM logins WHERE appId = :appId)) AS messagesSent',
             array(':appId' => $appId));
+    }
+
+    public static function queryMessagesPerAppIdAndState($appId, $state)
+    {
+        return getDatabase()->all('SELECT * FROM messages WHERE state = :state AND token IN (SELECT token FROM logins WHERE appId = :appId)',
+            array(':state' => $state, ':appId' => $appId));
     }
 
     //  Sets up the database (creates it or updates it)

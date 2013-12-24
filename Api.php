@@ -13,16 +13,42 @@ class Api
 {
     public static function setupApi()
     {
-        //  Heartbeat API doesn't receive any parameters.
+        //  heartbeat method doesn't receive any parameters.
+        //  It returns the data format used by the API and the current version of the service.
         getApi()->get('/', array('Api', 'heartbeat'), EpiApi::external);
-        //  Register API receives the name of the app to be registered.
+        //  registerApp API receives the name of the app to be registered.
+        //  On success it returns app ID and secret.
         getApi()->post('/registerApp', array('Api', 'registerApp'), EpiApi::external);
+        getApi()->get('/registerApp', array('Api', 'postNotGetError'), EpiApi::external);
+        //  login API receives the app ID and secret to create a new session.
+        //  On success it returns the session token.
         getApi()->post('/login', array('Api', 'login'), EpiApi::external);
+        getApi()->get('/login', array('Api', 'postNotGetError'), EpiApi::external);
+        //  send API receives session token and JSON payload definint the message to be sent.
+        //  On success it returns message ID.
         getApi()->post('/send', array('Api', 'send'), EpiApi::external);
+        getApi()->get('/send', array('Api', 'postNotGetError'), EpiApi::external);
+        //  sendWaiting API receives app ID.
+        //  On success it returns message IDs of all the messages it has sent.
+        getApi()->post('/sendWaiting', array('Api', 'sendWaiting'), EpiApi::external);
+        getApi()->get('/sendWaiting', array('Api', 'postNotGetError'), EpiApi::external);
+        //  getStatus API receives a message ID.
+        //  On success it returns all the data available on the message with the given message ID.
         getApi()->get('/getStatus', array('Api', 'getStatus'), EpiApi::external);
+        //  getStatistics API receives an application ID.
+        //  On success it returns the number of sent messages and the number of messages waiting to be sent.
         getApi()->get('/getStatistics', array('Api', 'getStatistics'), EpiApi::external);
+        //  logout API receives a session token.
+        //  On success it just returns status and timestamp.
         getApi()->post('/logout', array('Api', 'logout'), EpiApi::external);
-        getApi()->post('/unregisterApp', array('Api', 'unres'), EpiApi::external);
+        getApi()->get('/logout', array('Api', 'postNotGetError'), EpiApi::external);
+        //  unregisterApp receives an app ID.
+        //  On success it just returns status and timestamp.
+        getApi()->post('/unregisterApp', array('Api', 'unregisterApp'), EpiApi::external);
+    }
+
+    public static function processRequests()
+    {
         getRoute()->run();
     }
 
@@ -115,6 +141,11 @@ class Api
         return $loginData
             && $loginData['expiresAt'] < new DateTime()
             && $loginData['state'] == DatabaseLoginState::LoggedIn;
+    }
+
+    static function postNotGetError()
+    {
+        Api::reportFailure('Couldn\'t invoke this method using GET. Use POST instead.');
     }
 
     //  The functions implementing API.
@@ -292,6 +323,52 @@ class Api
             Database::updateMessageState($messageId, DatabaseMessageState::Sent);
 
             Api::reportSuccess(array("messageId" => $messageId));
+        }
+        catch(Exception $e)
+        {
+            Api::reportFailure($e->getMessage());
+        }
+    }
+
+    public static function sendWaiting()
+    {
+        try
+        {
+            $appId = Api::getAppIdParam();
+            if(!$appId)
+            {
+                return;
+            }
+
+            $sentMessageIds = array();
+            $counter = 0;
+
+            //  Request all waiting message IDs.
+            $messages = Database::queryMessagesPerAppIdAndState($appId, DatabaseMessageState::Waiting);
+            if($messages)
+            {
+                //  Try to send all the waiting messages.
+                for ($i = 0; $i < count($messages); ++$i)
+                {
+                    $messageData = $messages[$i];
+                    //  Now send the message.
+                    $pushError = PushService::push($messageData);
+                    if($pushError)
+                    {
+                        reportFailure($pushError);
+                        return;
+                    }
+
+                    //  Update the message's status and store the ID for sending it back to the caller.
+                    $messageId = $messageData['id'];
+                    Database::updateMessageState($messageId, DatabaseMessageState::Sent);
+
+                    $sentMessageIds[$counter++] = $messageId;
+                }
+            }
+
+            //  Sent message IDs are an array within the returning JSON message.
+            Api::reportSuccess(array("messageIds" => $sentMessageIds));
         }
         catch(Exception $e)
         {
