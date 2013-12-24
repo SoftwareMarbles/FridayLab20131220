@@ -6,8 +6,10 @@ Experimental PHP + MySQL Push Notification Service
 NOTE: The code in this repository is **NOT** meant to be used in production.
 
 Hypothesis: I can make a simple push notification service in a language that I have never even seen on a db I have never used in a day.
+
 Experiment: Make a PHP + MySQL Push Notification Service
-Result: Mixed. I failed to do it within a day but it had to do more with getting the infrastructure in place and working correctly than with development difficulties in themselves. On the 2nd day the service was working correctly.
+
+Results: Mixed. I failed to do it within a day but it had to do more with getting the infrastructure in place and working correctly than with development difficulties in themselves. On the 2nd day the service was working correctly.
 
 Setup (assuming your web server is correctly setup to serve PHP pages):
  1. Copy the files into a directory where your web server can see them.
