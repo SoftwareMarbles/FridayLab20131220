@@ -22,17 +22,17 @@ Common features of API methods:
  3. The POST methods obtain their input params from the query parameters and/or from the payload in JSON format.
  4. All replies by the service are in JSON format and contain `status` and `timestamp` fields. Additionally, if the `status` is `fail`, an `error` field is also present.
 
-Usage (assuming service is at https://fridaylab.net/20131220):
+Usage (if the servis was running at [fridaylab.net](https://fridaylab.net/20131220)):
  1. Get a heartbeat: `curl https://fridaylab.net/20131220`.
  2. Login: `curl --data '' https://fridaylab.net/20131220/login?appId=<the assigned app ID>\&secret=<the assigned app secret>`. This will return a session token. The session token is valid for 24 hours or until logout method is invoked.
  3. Send a message: `curl --data '{"type":0,"recepient":"<the device token as assigned by iOS>","messageText":"<the text of the message>"}'   https://fridaylab.net/20131220/send?token=<the session token>`. This will return the complete message row (as JSON) from messages table including the message ID.
  4. Send messages that failed to be sent earlier: `curl --data '' https://fridaylab.net/20131220/sendWaiting?appId<the assigned app ID>`. This will return the list of message IDs that were sent.
  5. Get a status of a message: `curl https://fridaylab.net/20131220/getStatus?messageId=<the message ID>`. This will return the complete row from the message table.
- 6. Get statistics: `curl https://fridaylab.net/20131220/getStatistics?appId<the assigned app ID>`. This will return the number of waiting messages and the number of sent messages for the given application.
+ 6. Get statistics: `curl https://fridaylab.net/20131220/getStatistics?appId=<the assigned app ID>`. This will return the number of waiting messages and the number of sent messages for the given application.
  7. Logout: `curl --data '' https://fridaylab.net/20131220/logout?token=<the session token>`.
 
 Links:
- * The projects' [development log](DevLog.md). This can also be found on [my blog](http://www.softwaremarbles.com/people/ivan-erceg/blog)
+ * The project's [development log](DevLog.md). This can also be found on [my blog](http://www.softwaremarbles.com/people/ivan-erceg/blog)
 
 License
 =======
