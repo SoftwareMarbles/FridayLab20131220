@@ -32,9 +32,9 @@ Assuming a service is running at [fridaylab.net](http://fridaylab.net), you can 
  1. Get a heartbeat: `curl https://fridaylab.net/20131220`.
  2. Login: `curl --data '' https://fridaylab.net/20131220/login?appId=<the assigned app ID>\&secret=<the assigned app secret>`. This will return a session token. The session token is valid for 24 hours or until logout method is invoked.
  3. Send a message: `curl --data '{"type":0,"recepient":"<the device token as assigned by iOS>","messageText":"<the text of the message>"}'   https://fridaylab.net/20131220/send?token=<the session token>`. This will return the complete message row (as JSON) from messages table including the message ID.
- 4. Send messages that failed to be sent earlier: `curl --data '' https://fridaylab.net/20131220/sendWaiting?appId<the assigned app ID>`. This will return the list of message IDs that were sent.
+ 4. Send messages that failed to be sent earlier: `curl --data '' https://fridaylab.net/20131220/sendWaiting?appId=<the assigned app ID>`. This will return the list of message IDs that were sent.
  5. Get a status of a message: `curl https://fridaylab.net/20131220/getStatus?messageId=<the message ID>`. This will return the complete row from the message table.
- 6. Get statistics: `curl https://fridaylab.net/20131220/getStatistics?appId<the assigned app ID>`. This will return the number of waiting messages and the number of sent messages for the given application.
+ 6. Get statistics: `curl https://fridaylab.net/20131220/getStatistics?appId=<the assigned app ID>`. This will return the number of waiting messages and the number of sent messages for the given application.
  7. Logout: `curl --data '' https://fridaylab.net/20131220/logout?token=<the session token>`.
 
 ### Links
